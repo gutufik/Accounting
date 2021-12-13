@@ -12,29 +12,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace Accounting.Pages
 {
     /// <summary>
-    /// Interaction logic for PageAutn.xaml
+    /// Interaction logic for PageDevices.xaml
     /// </summary>
-    public partial class PageAuth : Page
+    public partial class PageDevices : Page
     {
-        public PageAuth()
+        public static ObservableCollection<Device> devices { get; set; }
+        public PageDevices()
         {
             InitializeComponent();
+            devices = new ObservableCollection<Device>(DBConnect.connection.Device.ToList());
             this.DataContext = this;
-        }
-        private void registerClick(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(new PageReg());
-        }
-
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            Windows.HomeWindow homeWindow = new Windows.HomeWindow();
-            homeWindow.Show();
-            Application.Current.MainWindow.Close();
         }
     }
 }

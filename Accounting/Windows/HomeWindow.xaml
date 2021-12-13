@@ -1,0 +1,28 @@
+﻿<Window x:Class="Accounting.Windows.HomeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Accounting.Windows"
+        mc:Ignorable="d"
+        Title="HomeWindow" Height="1080" Width="1920" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="btnSubdivisions" Content="Подразделения" Margin="0,0,40,0" FontSize="25" Height="60" Padding="10"/>
+            <Button x:Name="btnDevices" Content="Техника" Margin="40,0,40,0" FontSize="25" Height="60" Padding="10" Click="btnDevices_Click"/>
+            <Button x:Name="btnDevicesTransfer" Content="Предача техники" Margin="40,0,40,0" FontSize="25" Height="60" Padding="10" />
+            <Button x:Name="Employee" Content="Сотрудники" Margin="40,0,0,0" FontSize="25" Height="60" Padding="10"/>
+        </StackPanel>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1"/>
+    </Grid>
+</Window>

@@ -28,8 +28,8 @@
         <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="25" Margin="15"/>
         <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="25" Margin="15"/>
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <Button Content="Регистрация" FontSize="20" Padding="10" Margin="10" Click="registerClick"/>
-            <Button Content="Войти" FontSize="20" Padding="10" Margin="10" />
+            <Button x:Name="btnRegister" Content="Регистрация" FontSize="20" Padding="10" Margin="10" Click="registerClick"/>
+            <Button x:Name="btnLogin" Content="Войти" FontSize="20" Padding="10" Margin="10" Click="btnLogin_Click"/>
         </StackPanel>
 
 
