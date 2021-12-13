@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9cd2ef5ad3404d62857ca39499411ec4" Name="Diagram1">
+        <EntityTypeShape EntityType="AccountingModel.Device" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingModel.Emloyee" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingModel.Position" Width="1.5" PointX="3.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingModel.Subdivision" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AccountingModel.Transfer" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="AccountingModel.FK_Device_Subdivision" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingModel.FK_Transfer_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingModel.FK_Emloyee_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingModel.FK_Emloyee_Subdivision" ManuallyRouted="false" />
+        <AssociationConnector Association="AccountingModel.FK_Transfer_Emloyee" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
