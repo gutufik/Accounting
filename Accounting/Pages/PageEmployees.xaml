@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding employees}" IsReadOnly="True" FontSize="25">
+        <DataGrid Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding empls}" IsReadOnly="True" FontSize="35">
 
         </DataGrid>
     </Grid>

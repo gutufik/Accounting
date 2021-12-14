@@ -21,12 +21,37 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageTransferTable : Page
     {
-        public static ObservableCollection<Transfer> transfers { get; set; }
+        public static IEnumerable<Transf> transfers { get; set; }
         public PageTransferTable()
         {
             InitializeComponent();
-            transfers = new ObservableCollection<Transfer>(DBConnect.connection.Transfer.ToList());
+            transfers = from t in DBConnect.connection.Transfer.ToList()
+                        join d in DBConnect.connection.Device.ToList()
+                        on t.DeviceID equals d.DeviceID
+                        join e in DBConnect.connection.Employee.ToList()
+                        on t.FinRespPerson equals e.ID
+                        join s in DBConnect.connection.Subdivision.ToList()
+                        on e.SubdivID equals s.SubdivID
+                        select new Transf 
+                        {
+                            Device = d.DeviceName,
+                            Date = (DateTime)t.Date,
+                            RespPerson = e.Name,
+                            Subdivision = s.FullName
+                        };
             this.DataContext = this;
         }
+
+        private void AddTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageDeviceTransfer());
+        }
+    }
+    public class Transf
+    { 
+        public string Device { get; set; }
+        public DateTime Date { get; set; }
+        public string Subdivision { get; set; }
+        public string RespPerson { get; set; }
     }
 }

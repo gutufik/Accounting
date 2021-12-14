@@ -21,12 +21,31 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageEmployees : Page
     {
-        public static ObservableCollection<Employee> employees { get; set; }
+        public static IEnumerable<Empl> empls { get; set; }
         public PageEmployees()
         {
             InitializeComponent();
-            employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
+            //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
+            empls = from e in DBConnect.connection.Employee.ToList()
+                    join s in DBConnect.connection.Subdivision.ToList()
+                    on e.SubdivID equals s.SubdivID
+                    join p in DBConnect.connection.Position.ToList()
+                    on e.PositionID equals p.PositionID
+                    select new Empl 
+                    {
+                        ID = e.ID,
+                        Name = e.Name,
+                        Position = p.Name,
+                        Subdivision = s.FullName
+                    };
             this.DataContext = this;
         }
+    }
+    public class Empl
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Position { get; set; }
+        public string Subdivision { get; set; }
     }
 }

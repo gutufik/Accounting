@@ -39,7 +39,7 @@ namespace Accounting.Pages
             var user = users.Where(a => a.Login == txtLogin.Text && a.Password == txtPassword.Password).FirstOrDefault();
             if (user != null)
             {
-                Windows.HomeWindow homeWindow = new Windows.HomeWindow();
+                Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
                 homeWindow.Show();
                 Application.Current.MainWindow.Close();
             }

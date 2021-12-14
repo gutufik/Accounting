@@ -19,19 +19,21 @@ namespace Accounting.Windows
     /// </summary>
     public partial class HomeWindow : Window
     {
-        public HomeWindow()
+        private User user_;
+        public HomeWindow(User user)
         {
             InitializeComponent();
+            user_ = user;
         }
 
         private void btnDevices_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageDevices());
+            MainFrame.NavigationService.Navigate(new Pages.PageDevices(user_));
         }
 
         private void btnSubdivisions_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageSubdivisions());
+            MainFrame.NavigationService.Navigate(new Pages.PageSubdivisions(user_));
         }
 
         private void btnDevicesTransfer_Click(object sender, RoutedEventArgs e)

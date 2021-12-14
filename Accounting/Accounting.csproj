@@ -88,8 +88,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\PageAddSubdiv.xaml.cs">
+      <DependentUpon>PageAddSubdiv.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PageAuth.xaml.cs">
       <DependentUpon>PageAuth.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PageBuyDevice.xaml.cs">
+      <DependentUpon>PageBuyDevice.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PageDevices.xaml.cs">
       <DependentUpon>PageDevices.xaml</DependentUpon>
@@ -170,7 +176,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Pages\PageAddSubdiv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\PageAuth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PageBuyDevice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

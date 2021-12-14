@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9cd2ef5ad3404d62857ca39499411ec4" Name="Diagram1" ZoomLevel="116">
+      <Diagram DiagramId="9cd2ef5ad3404d62857ca39499411ec4" Name="Diagram1" ZoomLevel="47">
         <EntityTypeShape EntityType="AccountingModel.Device" Width="1.5" PointX="3" PointY="6.25" />
         <EntityTypeShape EntityType="AccountingModel.Employee" Width="1.5" PointX="3" PointY="2.375" />
         <EntityTypeShape EntityType="AccountingModel.Position" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="AccountingModel.Role" Width="1.5" PointX="5.75" PointY="1.625" />
         <EntityTypeShape EntityType="AccountingModel.Subdivision" Width="1.5" PointX="0.75" PointY="3.5" />
         <EntityTypeShape EntityType="AccountingModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="4.25" />
-        <EntityTypeShape EntityType="AccountingModel.Transfer" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="AccountingModel.Transfer" Width="1.5" PointX="5.25" PointY="4.75" />
         <EntityTypeShape EntityType="AccountingModel.User" Width="1.5" PointX="8" PointY="1.375" />
         <AssociationConnector Association="AccountingModel.FK_Device_Subdivision" />
         <AssociationConnector Association="AccountingModel.FK_Transfer_Device" />

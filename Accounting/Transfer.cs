@@ -14,10 +14,9 @@ namespace Accounting
     
     public partial class Transfer
     {
-        public int ID { get; set; }
-        public Nullable<int> DeviceID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> FinRespPerson { get; set; }
+        public int DeviceID { get; set; }
+        public System.DateTime Date { get; set; }
+        public int FinRespPerson { get; set; }
     
         public virtual Device Device { get; set; }
         public virtual Employee Employee { get; set; }

@@ -30,5 +30,41 @@ namespace Accounting.Pages
             subdivisions = new ObservableCollection<Subdivision>(DBConnect.connection.Subdivision.ToList());
             this.DataContext = this;
         }
+
+        private void BtnTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            var t = new Transfer();
+            try
+            {
+                t.DeviceID = (CbDevice.SelectedItem as Device).DeviceID;
+                t.Date = DateTime.Now;
+                t.FinRespPerson = (from em in DBConnect.connection.Employee.ToList()
+                                   where em.SubdivID ==
+                                 (CbSubdiv.SelectedItem as Subdivision).SubdivID
+                                   select em.ID).FirstOrDefault();
+                DBConnect.connection.Transfer.Add(t);
+                DBConnect.connection.SaveChanges();
+                MessageBox.Show("Новая передача зарегистрирована");
+                NavigationService.Navigate(new PageTransferTable());
+            }
+            catch
+            {
+                MessageBox.Show("Invalid Transfer", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RespPerson.Text = (from em in DBConnect.connection.Employee.ToList()
+                       where em.SubdivID ==
+                     ((sender as ComboBox).SelectedItem as Subdivision).SubdivID
+                       select em.Name).FirstOrDefault();
+                            //{
+                            //    ID = em.ID,
+                            //    Name = em.Name,
+                            //    PositionID = em.PositionID,
+                            //    SubdivID = em.SubdivID
+                            //};
+        }
     }
 }

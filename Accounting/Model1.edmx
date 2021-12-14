@@ -10,12 +10,12 @@
             <PropertyRef Name="DeviceID" />
           </Key>
           <Property Name="DeviceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeviceName" Type="varchar" MaxLength="50" />
-          <Property Name="Model" Type="varchar" MaxLength="50" />
-          <Property Name="PurchaseDate" Type="date" />
-          <Property Name="Room" Type="int" />
-          <Property Name="SubdivID" Type="int" />
-          <Property Name="Price" Type="int" />
+          <Property Name="DeviceName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PurchaseDate" Type="date" Nullable="false" />
+          <Property Name="Room" Type="int" Nullable="false" />
+          <Property Name="SubdivID" Type="int" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -60,12 +60,12 @@
         </EntityType>
         <EntityType Name="Transfer">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="DeviceID" />
+            <PropertyRef Name="Date" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeviceID" Type="int" />
-          <Property Name="Date" Type="date" />
-          <Property Name="FinRespPerson" Type="int" />
+          <Property Name="DeviceID" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="FinRespPerson" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -77,7 +77,7 @@
           <Property Name="RoleID" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Device_Subdivision">
-          <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="0..1" />
+          <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="1" />
           <End Role="Device" Type="Self.Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subdivision">
@@ -113,7 +113,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transfer_Device">
-          <End Role="Device" Type="Self.Device" Multiplicity="0..1" />
+          <End Role="Device" Type="Self.Device" Multiplicity="1" />
           <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Device">
@@ -125,7 +125,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transfer_Emloyee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="Transfer" Type="Self.Transfer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -225,12 +225,12 @@
             <PropertyRef Name="DeviceID" />
           </Key>
           <Property Name="DeviceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DeviceName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PurchaseDate" Type="DateTime" Precision="0" />
-          <Property Name="Room" Type="Int32" />
-          <Property Name="SubdivID" Type="Int32" />
-          <Property Name="Price" Type="Int32" />
+          <Property Name="DeviceName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Model" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Room" Type="Int32" Nullable="false" />
+          <Property Name="SubdivID" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Subdivision" Relationship="AccountingModel.FK_Device_Subdivision" FromRole="Device" ToRole="Subdivision" />
           <NavigationProperty Name="Transfer" Relationship="AccountingModel.FK_Transfer_Device" FromRole="Device" ToRole="Transfer" />
         </EntityType>
@@ -284,12 +284,12 @@
         </EntityType>
         <EntityType Name="Transfer">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="DeviceID" />
+            <PropertyRef Name="Date" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DeviceID" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="0" />
-          <Property Name="FinRespPerson" Type="Int32" />
+          <Property Name="DeviceID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FinRespPerson" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Device" Relationship="AccountingModel.FK_Transfer_Device" FromRole="Transfer" ToRole="Device" />
           <NavigationProperty Name="Employee" Relationship="AccountingModel.FK_Transfer_Emloyee" FromRole="Transfer" ToRole="Employee" />
         </EntityType>
@@ -304,7 +304,7 @@
           <NavigationProperty Name="Role" Relationship="AccountingModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Device_Subdivision">
-          <End Type="AccountingModel.Subdivision" Role="Subdivision" Multiplicity="0..1" />
+          <End Type="AccountingModel.Subdivision" Role="Subdivision" Multiplicity="1" />
           <End Type="AccountingModel.Device" Role="Device" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subdivision">
@@ -316,7 +316,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transfer_Device">
-          <End Type="AccountingModel.Device" Role="Device" Multiplicity="0..1" />
+          <End Type="AccountingModel.Device" Role="Device" Multiplicity="1" />
           <End Type="AccountingModel.Transfer" Role="Transfer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Device">
@@ -352,7 +352,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Transfer_Emloyee">
-          <End Type="AccountingModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="AccountingModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="AccountingModel.Transfer" Role="Transfer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -446,7 +446,6 @@
                 <ScalarProperty Name="FinRespPerson" ColumnName="FinRespPerson" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

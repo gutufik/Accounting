@@ -21,12 +21,36 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageSubdivisions : Page
     {
-        public static ObservableCollection<Subdivision> subdivisions { get; set; }
-        public PageSubdivisions()
+        public static IEnumerable<Subdiv> subdivisions { get; set; }
+        private User user_;
+        public PageSubdivisions(User user)
         {
             InitializeComponent();
-            subdivisions = new ObservableCollection<Subdivision>(DBConnect.connection.Subdivision.ToList());
+            subdivisions = from s in DBConnect.connection.Subdivision.ToList()
+                           select new Subdiv 
+                           {
+                               ID = s.SubdivID,
+                               ShortName = s.ShortName,
+                               FullName = s.FullName
+                           };
+            user_ = user;
+            if (user_.RoleID != 1)
+            {
+                Add.Visibility = Visibility.Hidden;
+            }
+            this.DataContext = this;
             this.DataContext = this;
         }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new PageAddSubdiv(user_));
+        }
+    }
+    public class Subdiv
+    { 
+        public int ID { get; set; }
+        public string ShortName { get; set; }
+        public string FullName { get; set; }
     }
 }

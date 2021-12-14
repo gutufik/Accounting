@@ -13,10 +13,12 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding devices}" IsReadOnly="True" FontSize="25">
+        <DataGrid Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding devices}" IsReadOnly="True" FontSize="35">
             
         </DataGrid>
+        <Button x:Name="BtnBuy" Content="Закупить" Grid.Row="1" FontSize="25" Click="BtnBuy_Click"/>
     </Grid>
 </Page>

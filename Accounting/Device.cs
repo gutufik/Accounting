@@ -22,10 +22,10 @@ namespace Accounting
         public int DeviceID { get; set; }
         public string DeviceName { get; set; }
         public string Model { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
-        public Nullable<int> Room { get; set; }
-        public Nullable<int> SubdivID { get; set; }
-        public Nullable<int> Price { get; set; }
+        public System.DateTime PurchaseDate { get; set; }
+        public int Room { get; set; }
+        public int SubdivID { get; set; }
+        public int Price { get; set; }
     
         public virtual Subdivision Subdivision { get; set; }
         public virtual ICollection<Transfer> Transfer { get; set; }
