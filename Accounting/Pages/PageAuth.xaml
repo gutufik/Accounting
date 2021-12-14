@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Accounting.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="PageAutn">
 
-    <Grid Margin="35">
+    <Grid Margin="70">
         <Grid.ColumnDefinitions >
             <ColumnDefinition/>
             <ColumnDefinition />
@@ -22,14 +22,14 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Авторизация" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="36" Margin="15"/>
-        <TextBlock Text="Логин"  TextAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"  FontSize="25"/>
-        <TextBlock Text="Пароль" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontSize="25"/>
-        <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="25" Margin="15"/>
-        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="25" Margin="15"/>
+        <TextBlock Text="Авторизация" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="40" Margin="15"/>
+        <TextBlock Text="Логин"  TextAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"  FontSize="30"/>
+        <TextBlock Text="Пароль" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontSize="30"/>
+        <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
+        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-            <Button x:Name="btnRegister" Content="Регистрация" FontSize="20" Padding="10" Margin="10" Click="registerClick"/>
-            <Button x:Name="btnLogin" Content="Войти" FontSize="20" Padding="10" Margin="10" Click="btnLogin_Click"/>
+            <Button x:Name="btnRegister" Content="Регистрация" FontSize="30" Padding="10" Margin="10" Click="registerClick"/>
+            <Button x:Name="btnLogin" Content="Войти" FontSize="30" Padding="10" Margin="10" Click="btnLogin_Click"/>
         </StackPanel>
 
 

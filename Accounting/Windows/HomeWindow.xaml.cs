@@ -28,5 +28,20 @@ namespace Accounting.Windows
         {
             MainFrame.NavigationService.Navigate(new Pages.PageDevices());
         }
+
+        private void btnSubdivisions_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.PageSubdivisions());
+        }
+
+        private void btnDevicesTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.PageTransferTable());
+        }
+
+        private void Employee_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.NavigationService.Navigate(new Pages.PageEmployees());
+        }
     }
 }

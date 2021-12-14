@@ -16,12 +16,12 @@ namespace Accounting
     {
         public Position()
         {
-            this.Emloyee = new HashSet<Emloyee>();
+            this.Employee = new HashSet<Employee>();
         }
     
         public int PositionID { get; set; }
         public string Name { get; set; }
     
-        public virtual ICollection<Emloyee> Emloyee { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
     }
 }

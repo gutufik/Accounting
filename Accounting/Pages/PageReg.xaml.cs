@@ -29,5 +29,26 @@ namespace Accounting.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void btnReg_Click(object sender, RoutedEventArgs e)
+        {
+            var u = new User();
+            try
+            {
+                u.Name = txtName.Text;
+                u.Login = txtLogin.Text;
+                u.Password = txtPassword.Password;
+                u.RoleID = 2;
+                DBConnect.connection.User.Add(u);
+                DBConnect.connection.SaveChanges();
+                MessageBox.Show("Новый пользователь зарегистрирован");
+                NavigationService.GoBack();
+            }
+            catch
+            {
+                MessageBox.Show("Invalid User", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+        }
     }
 }

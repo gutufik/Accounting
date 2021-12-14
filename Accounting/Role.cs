@@ -12,20 +12,16 @@ namespace Accounting
     using System;
     using System.Collections.Generic;
     
-    public partial class Emloyee
+    public partial class Role
     {
-        public Emloyee()
+        public Role()
         {
-            this.Transfer = new HashSet<Transfer>();
+            this.User = new HashSet<User>();
         }
     
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public Nullable<int> PositionID { get; set; }
-        public Nullable<int> SubdivID { get; set; }
+        public int RoleID { get; set; }
+        public string RoleName { get; set; }
     
-        public virtual Position Position { get; set; }
-        public virtual Subdivision Subdivision { get; set; }
-        public virtual ICollection<Transfer> Transfer { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }

@@ -26,10 +26,12 @@ namespace Accounting
         }
     
         public DbSet<Device> Device { get; set; }
-        public DbSet<Emloyee> Emloyee { get; set; }
+        public DbSet<Employee> Employee { get; set; }
         public DbSet<Position> Position { get; set; }
+        public DbSet<Role> Role { get; set; }
         public DbSet<Subdivision> Subdivision { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Transfer> Transfer { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

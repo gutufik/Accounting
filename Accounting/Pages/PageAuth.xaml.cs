@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace Accounting.Pages
 {
@@ -20,9 +21,11 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageAuth : Page
     {
+        public static ObservableCollection<User> users { get; set; }
         public PageAuth()
         {
             InitializeComponent();
+            
             this.DataContext = this;
         }
         private void registerClick(object sender, RoutedEventArgs e)
@@ -32,9 +35,18 @@ namespace Accounting.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            Windows.HomeWindow homeWindow = new Windows.HomeWindow();
-            homeWindow.Show();
-            Application.Current.MainWindow.Close();
+            users = new ObservableCollection<User>(DBConnect.connection.User.ToList());
+            var user = users.Where(a => a.Login == txtLogin.Text && a.Password == txtPassword.Password).FirstOrDefault();
+            if (user != null)
+            {
+                Windows.HomeWindow homeWindow = new Windows.HomeWindow();
+                homeWindow.Show();
+                Application.Current.MainWindow.Close();
+            }
+            else
+            {
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

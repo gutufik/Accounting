@@ -20,6 +20,6 @@ namespace Accounting
         public Nullable<int> FinRespPerson { get; set; }
     
         public virtual Device Device { get; set; }
-        public virtual Emloyee Emloyee { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }

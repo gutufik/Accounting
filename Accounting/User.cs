@@ -12,19 +12,13 @@ namespace Accounting
     using System;
     using System.Collections.Generic;
     
-    public partial class Subdivision
+    public partial class User
     {
-        public Subdivision()
-        {
-            this.Device = new HashSet<Device>();
-            this.Employee = new HashSet<Employee>();
-        }
+        public string Login { get; set; }
+        public string Name { get; set; }
+        public string Password { get; set; }
+        public int RoleID { get; set; }
     
-        public int SubdivID { get; set; }
-        public string ShortName { get; set; }
-        public string FullName { get; set; }
-    
-        public virtual ICollection<Device> Device { get; set; }
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual Role Role { get; set; }
     }
 }
