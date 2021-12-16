@@ -7,8 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="1080" d:DesignWidth="1920"
       Title="PageAutn">
-
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Verdana" />
+            <Setter Property="Background" Value="Blue" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Page.Resources>
     <Grid Margin="70">
+        
         <Grid.ColumnDefinitions >
             <ColumnDefinition/>
             <ColumnDefinition />
@@ -22,7 +30,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Авторизация" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="40" Margin="15"/>
+        <TextBlock Text="Вход" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="40" Margin="15"/>
         <TextBlock Text="Логин"  TextAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"  FontSize="30"/>
         <TextBlock Text="Пароль" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontSize="30"/>
         <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>

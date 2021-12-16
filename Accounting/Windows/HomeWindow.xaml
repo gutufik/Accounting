@@ -6,6 +6,15 @@
         xmlns:local="clr-namespace:Accounting.Windows"
         mc:Ignorable="d"
         Title="HomeWindow" Height="1080" Width="1920" WindowState="Maximized" Background="#FF9AE2EE">
+
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontFamily" Value="Verdana" />
+            <Setter Property="Background" Value="Blue" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
