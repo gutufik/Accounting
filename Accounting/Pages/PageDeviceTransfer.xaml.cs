@@ -43,6 +43,10 @@ namespace Accounting.Pages
                                  (CbSubdiv.SelectedItem as Subdivision).SubdivID
                                    select em.ID).FirstOrDefault();
                 DBConnect.connection.Transfer.Add(t);
+                
+                var device = DBConnect.connection.Device.SingleOrDefault(d => d.DeviceID == t.DeviceID);
+                device.SubdivID = (int)DBConnect.connection.Employee.SingleOrDefault(em => em.ID == t.FinRespPerson).SubdivID;
+                
                 DBConnect.connection.SaveChanges();
                 MessageBox.Show("Новая передача зарегистрирована");
                 NavigationService.Navigate(new PageTransferTable());
@@ -59,12 +63,6 @@ namespace Accounting.Pages
                        where em.SubdivID ==
                      ((sender as ComboBox).SelectedItem as Subdivision).SubdivID
                        select em.Name).FirstOrDefault();
-                            //{
-                            //    ID = em.ID,
-                            //    Name = em.Name,
-                            //    PositionID = em.PositionID,
-                            //    SubdivID = em.SubdivID
-                            //};
         }
     }
 }

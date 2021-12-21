@@ -43,6 +43,7 @@ namespace Accounting.Pages
                 d.DeviceName = tbName.Text;
                 d.Model = tbModel.Text;
                 d.Room = int.Parse(tbRoom.Text);
+                d.PurchaseDate = DateTime.Now;
                 d.Price = price;
                 d.SubdivID = (cbSubdiv.SelectedItem as Subdivision).SubdivID;
                 DBConnect.connection.Device.Add(d);
