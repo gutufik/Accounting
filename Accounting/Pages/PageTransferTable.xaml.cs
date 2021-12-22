@@ -34,6 +34,7 @@ namespace Accounting.Pages
                         on e.SubdivID equals s.SubdivID
                         select new Transf 
                         {
+                            DeviceID = d.DeviceID,
                             Device = d.DeviceName,
                             Date = (DateTime)t.Date,
                             RespPerson = e.Name,
@@ -46,9 +47,23 @@ namespace Accounting.Pages
         {
             NavigationService.Navigate(new PageDeviceTransfer());
         }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            var user = dgTransfer.SelectedItem as Transf;
+            DBConnect.connection.Transfer.Remove(DBConnect.connection.Transfer.Find(user.DeviceID, user.Date));
+            DBConnect.connection.SaveChanges();
+            NavigationService.Navigate(new PageTransferTable());
+        }
+
+        private void dgTransfer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Del.IsEnabled = true;
+        }
     }
     public class Transf
-    { 
+    {
+        public int DeviceID { get; set; }
         public string Device { get; set; }
         public DateTime Date { get; set; }
         public string Subdivision { get; set; }

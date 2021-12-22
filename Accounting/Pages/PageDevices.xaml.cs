@@ -43,6 +43,7 @@ namespace Accounting.Pages
             if (user_.RoleID != 1)
             {
                 BtnBuy.Visibility = Visibility.Hidden;
+                BtnDel.Visibility = Visibility.Hidden;
             }
             this.DataContext = this;
         }
@@ -50,6 +51,20 @@ namespace Accounting.Pages
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageBuyDevice(user_));
+        }
+
+        private void dgDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (user_.RoleID == 1)
+                BtnDel.IsEnabled = true;
+        }
+
+        private void BtnDel_Click(object sender, RoutedEventArgs e)
+        {
+            var user = dgDevice.SelectedItem as Dev;
+            DBConnect.connection.Device.Remove(DBConnect.connection.Device.Find(user.ID));
+            DBConnect.connection.SaveChanges();
+            NavigationService.Navigate(new PageDevices(user_));
         }
     }
     public class Dev

@@ -37,14 +37,27 @@ namespace Accounting.Pages
             if (user_.RoleID != 1)
             {
                 Add.Visibility = Visibility.Hidden;
+                Del.Visibility = Visibility.Hidden;
             }
-            this.DataContext = this;
             this.DataContext = this;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new PageAddSubdiv(user_));
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            var user = dgSubdiv.SelectedItem as Subdiv;
+            DBConnect.connection.Subdivision.Remove(DBConnect.connection.Subdivision.Find(user.ID));
+            DBConnect.connection.SaveChanges();
+            NavigationService.Navigate(new PageSubdivisions(user_));
+        }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Del.IsEnabled = true;
         }
     }
     public class Subdiv

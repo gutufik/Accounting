@@ -43,7 +43,7 @@ namespace Accounting.Windows
 
         private void Employee_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageEmployees());
+            MainFrame.NavigationService.Navigate(new Pages.PageEmployees(user_));
         }
     }
 }

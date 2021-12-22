@@ -23,9 +23,13 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding subdivisions}" IsReadOnly="True" FontSize="35">
+        <DataGrid Grid.Row="0" x:Name="dgSubdiv"  Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding subdivisions}" IsReadOnly="True" FontSize="35" SelectionChanged="DataGrid_SelectionChanged">
 
         </DataGrid>
-        <Button x:Name="Add" Content="Добавить" Click="Add_Click" Grid.Row="1" FontSize="20"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"> 
+            <Button x:Name="Add" Content="Добавить" Click="Add_Click"  FontSize="20"/>
+            <Button x:Name="Del" Content="Удалить" Click="Del_Click"  FontSize="20" IsEnabled="False"/>
+        </StackPanel>
+        
     </Grid>
 </Page>

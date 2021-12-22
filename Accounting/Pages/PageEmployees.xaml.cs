@@ -22,7 +22,8 @@ namespace Accounting.Pages
     public partial class PageEmployees : Page
     {
         public static IEnumerable<Empl> empls { get; set; }
-        public PageEmployees()
+        public static User user_;
+        public PageEmployees(User user)
         {
             InitializeComponent();
             //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
@@ -38,7 +39,26 @@ namespace Accounting.Pages
                         Position = p.Name,
                         Subdivision = s.FullName
                     };
+            user_ = user;
+
+            if (user_.RoleID != 1)
+            {
+                Del.Visibility = Visibility.Hidden;
+            }
             this.DataContext = this;
+        }
+
+        private void dgEmp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Del.IsEnabled = true;
+        }
+
+        private void Del_Click(object sender, RoutedEventArgs e)
+        {
+            var user = dgEmp.SelectedItem as Empl;
+            DBConnect.connection.Employee.Remove(DBConnect.connection.Employee.Find(user.ID));
+            DBConnect.connection.SaveChanges();
+            NavigationService.Navigate(new PageEmployees(user_));
         }
     }
     public class Empl
