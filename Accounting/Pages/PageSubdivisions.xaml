@@ -28,6 +28,8 @@
         </DataGrid>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center"> 
             <Button x:Name="Add" Content="Добавить" Click="Add_Click"  FontSize="20"/>
+            <Button x:Name="Export" Content="Экспорт Excel" Click="Export_Click"  FontSize="20"/>
+            <Button x:Name="WordExport" Content="Экспорт Word" Click="Word_Click"  FontSize="20"/>
             <Button x:Name="Del" Content="Удалить" Click="Del_Click"  FontSize="20" IsEnabled="False"/>
         </StackPanel>
         

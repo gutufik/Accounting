@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Excel = Microsoft.Office.Interop.Excel;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace Accounting.Pages
 {
@@ -58,6 +60,63 @@ namespace Accounting.Pages
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Del.IsEnabled = true;
+        }
+
+        private void Export_Click(object sender, RoutedEventArgs e)
+        {
+            var subdivisions_ = subdivisions.ToList();
+            var application = new Excel.Application();
+            application.SheetsInNewWorkbook = 1;
+
+            Excel.Workbook workbook = application.Workbooks.Add(Type.Missing);
+            Excel.Worksheet worksheet = application.Worksheets.Item[1];
+            worksheet.Name = "Подразделения";
+
+            worksheet.Cells[1][1] = "ID";
+            worksheet.Cells[2][1] = "ShortName";
+            worksheet.Cells[3][1] = "FullName";
+
+            var rowIndex = 2;
+
+            for (int i = 0; i < subdivisions_.Count(); i++)
+            {
+                worksheet.Cells[1][rowIndex] = subdivisions_[i].ID;
+                worksheet.Cells[2][rowIndex] = subdivisions_[i].ShortName;
+                worksheet.Cells[3][rowIndex] = subdivisions_[i].FullName;
+                rowIndex++;
+            }
+            worksheet.Columns.AutoFit();
+            worksheet.Rows.AutoFit();
+
+            application.Visible = true;
+        }
+
+        private void Word_Click(object sender, RoutedEventArgs e)
+        {
+            var subdivisions_ = subdivisions.ToList();
+            var application = new Word.Application();
+            Word.Document document = application.Documents.Add();
+
+            var tableParagraph = document.Paragraphs.Add();
+            Word.Range tableRange = tableParagraph.Range;
+
+            Word.Table table = document.Tables.Add(tableRange, subdivisions_.Count, 3);
+            table.Borders.InsideLineStyle = table.Borders.OutsideLineStyle = Word.WdLineStyle.wdLineStyleSingle;
+
+            for (int i = 0; i < subdivisions_.Count; i++)
+            {
+                var cellRange = table.Cell(i + 1, 1).Range;
+                cellRange.Text = subdivisions_[i].ID.ToString();
+
+                cellRange = table.Cell(i + 1, 2).Range;
+                cellRange.Text = subdivisions_[i].ShortName;
+
+                cellRange = table.Cell(i + 1, 3).Range;
+                cellRange.Text = subdivisions_[i].FullName;
+            }
+
+
+            application.Visible = true;
         }
     }
     public class Subdiv
