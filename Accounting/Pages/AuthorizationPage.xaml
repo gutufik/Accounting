@@ -25,8 +25,8 @@
         <TextBlock Text="Вход" TextAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" FontSize="40" Margin="15"/>
         <TextBlock Text="Логин"  TextAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"  FontSize="30"/>
         <TextBlock Text="Пароль" TextAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" FontSize="30"/>
-        <TextBox x:Name="txtLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
-        <PasswordBox x:Name="txtPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
+        <TextBox x:Name="TbLogin" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
+        <PasswordBox x:Name="PbPassword" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" FontSize="30" Margin="15"/>
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10">
             <Button x:Name="btnRegister" 
                     Content="Регистрация" 

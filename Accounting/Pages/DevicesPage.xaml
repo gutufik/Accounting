@@ -6,15 +6,8 @@
       xmlns:local="clr-namespace:Accounting.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
+      Background="White"
       Title="PageDevices">
-    <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="Background" Value="Blue" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="10" />
-        </Style>
-    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,9 +17,26 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" x:Name="dgDevice" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding devices}" IsReadOnly="True" FontSize="35" SelectionChanged="dgDevice_SelectionChanged">
-            
-        </DataGrid>
+        <ListView>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Название" 
+                                        DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Модель" 
+                                        DisplayMemberBinding="{Binding Model}"/>
+                        <GridViewColumn Header="Дата покупки" 
+                                        DisplayMemberBinding="{Binding PurchaseDate}"/>
+                        <GridViewColumn Header="Номер комнаты" 
+                                        DisplayMemberBinding="{Binding RoomNumber}"/>
+                        <GridViewColumn Header="Цена" 
+                                        DisplayMemberBinding="{Binding Price}"/>
+                        <GridViewColumn Header="Подразделение" 
+                                        DisplayMemberBinding="{Binding Subdivision.Name}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button x:Name="BtnBuy" Content="Закупить"  FontSize="25" Click="BtnBuy_Click"/>
             <Button x:Name="BtnDel" Content="Удалить" FontSize="25" Click="BtnDel_Click" IsEnabled="False"/>

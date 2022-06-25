@@ -35,5 +35,12 @@ namespace Core
         {
             return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
         }
+
+        public static bool RegisterUser(User user)
+        { 
+            EquipmentAccountingEntities.GetContext().Users.Add(user);
+
+            return Convert.ToBoolean(EquipmentAccountingEntities.GetContext().SaveChanges());
+        }
     }
 }

@@ -6,15 +6,6 @@
         xmlns:local="clr-namespace:Accounting.Windows"
         mc:Ignorable="d"
         Title="HomeWindow" Height="1080" Width="1920" WindowState="Maximized" Background="#FF9AE2EE">
-
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="Background" Value="Blue" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="10" />
-        </Style>
-    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -27,12 +18,41 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button x:Name="btnSubdivisions" Content="Подразделения" Margin="0,0,40,0" FontSize="25" Height="60" Padding="10" Click="btnSubdivisions_Click"/>
-            <Button x:Name="btnDevices" Content="Техника" Margin="40,0,40,0" FontSize="25" Height="60" Padding="10" Click="btnDevices_Click"/>
-            <Button x:Name="btnDevicesTransfer" Content="Предача техники" Margin="40,0,40,0" FontSize="25" Height="60" Padding="10" Click="btnDevicesTransfer_Click"/>
-            <Button x:Name="Employee" Content="Сотрудники" Margin="40,0,0,0" FontSize="25" Height="60" Padding="10" Click="Employee_Click"/>
+            <Button x:Name="btnSubdivisions"
+                    Content="Подразделения"
+                    Margin="0,0,40,0" 
+                    FontSize="25" 
+                    Height="60" 
+                    Click="btnSubdivisions_Click"/>
+            
+            <Button x:Name="btnDevices" 
+                    Content="Техника"
+                    Margin="40,0,40,0" 
+                    FontSize="25" 
+                    Height="60"
+                    Click="btnDevices_Click"/>
+            
+            <Button x:Name="btnDevicesTransfer" 
+                    Content="Предача техники" 
+                    Margin="40,0,40,0" 
+                    FontSize="25" 
+                    Height="60" 
+                    Click="btnDevicesTransfer_Click"/>
+
+            <Button x:Name="Employee"
+                    Content="Сотрудники" 
+                    Margin="40,0,0,0" 
+                    FontSize="25" 
+                    Height="60" 
+                    Click="Employee_Click"/>
         </StackPanel>
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1"/>
-        <Image Source="/Accounting;component/Images/Main.png" Grid.Row="1" Grid.Column="1" Panel.ZIndex="0"/>
+        
+        <Frame x:Name="MainFrame" 
+               NavigationUIVisibility="Hidden" 
+               Grid.Column="1" Grid.Row="1" 
+               Panel.ZIndex="1"/>
+        
+        <Image Source="/Accounting;component/Images/Main.png" 
+               Grid.Row="1" Grid.Column="1" Panel.ZIndex="0"/>
     </Grid>
 </Window>

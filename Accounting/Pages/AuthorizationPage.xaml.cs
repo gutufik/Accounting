@@ -22,7 +22,6 @@ namespace Accounting.Pages
     /// </summary>
     public partial class AuthorizationPage : Page
     {
-        public static ObservableCollection<User> users { get; set; }
         public AuthorizationPage()
         {
             InitializeComponent();
@@ -36,18 +35,20 @@ namespace Accounting.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            //users = DataAccess.GetUsers();
-            //var user = users.Where(a => a.Login == txtLogin.Text && a.Password == txtPassword.Password).FirstOrDefault();
-            //if (user != null)
-            //{
-            //    Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
-            //    homeWindow.Show();
-            //    Application.Current.MainWindow.Close();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            var login = TbLogin.Text;
+            var password = PbPassword.Password;
+
+            var user = DataAccess.GetUser(login, password);
+            if (user != null)
+            {
+                Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
+                homeWindow.Show();
+                Application.Current.MainWindow.Close();
+            }
+            else
+            {
+                MessageBox.Show("Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

@@ -20,21 +20,21 @@ namespace Accounting.Windows
     /// </summary>
     public partial class HomeWindow : Window
     {
-        private User user_;
+        private User user;
         public HomeWindow(User user)
         {
             InitializeComponent();
-            user_ = user;
+            this.user = user;
         }
 
         private void btnDevices_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.DevicesPage(user_));
+            MainFrame.NavigationService.Navigate(new Pages.DevicesPage(user));
         }
 
         private void btnSubdivisions_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.SubdivisionsPage(user_));
+            MainFrame.NavigationService.Navigate(new Pages.SubdivisionsPage(user));
         }
 
         private void btnDevicesTransfer_Click(object sender, RoutedEventArgs e)
@@ -44,7 +44,7 @@ namespace Accounting.Windows
 
         private void Employee_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.EmployeesPage(user_));
+            MainFrame.NavigationService.Navigate(new Pages.EmployeesPage(user));
         }
     }
 }
