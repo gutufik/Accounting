@@ -20,10 +20,10 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageTransferTable.xaml
     /// </summary>
-    public partial class PageTransferTable : Page
+    public partial class TransfersPage : Page
     {
         public static List<Transfer> transfers { get; set; }
-        public PageTransferTable()
+        public TransfersPage()
         {
             InitializeComponent();
             transfers = DataAccess.GetTransfers();
@@ -32,7 +32,7 @@ namespace Accounting.Pages
 
         private void AddTransfer_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PageDeviceTransfer());
+            NavigationService.Navigate(new DeviceTransferPage());
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)

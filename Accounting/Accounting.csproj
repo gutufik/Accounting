@@ -78,32 +78,32 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Pages\PageAddSubdiv.xaml.cs">
-      <DependentUpon>PageAddSubdiv.xaml</DependentUpon>
+    <Compile Include="Pages\SubdivisionPage.xaml.cs">
+      <DependentUpon>SubdivisionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageAuth.xaml.cs">
-      <DependentUpon>PageAuth.xaml</DependentUpon>
+    <Compile Include="Pages\AuthorizationPage.xaml.cs">
+      <DependentUpon>AuthorizationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageBuyDevice.xaml.cs">
-      <DependentUpon>PageBuyDevice.xaml</DependentUpon>
+    <Compile Include="Pages\DevicePurchasePage.xaml.cs">
+      <DependentUpon>DevicePurchasePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageDevices.xaml.cs">
-      <DependentUpon>PageDevices.xaml</DependentUpon>
+    <Compile Include="Pages\DevicesPage.xaml.cs">
+      <DependentUpon>DevicesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageDeviceTransfer.xaml.cs">
-      <DependentUpon>PageDeviceTransfer.xaml</DependentUpon>
+    <Compile Include="Pages\DeviceTransferPage.xaml.cs">
+      <DependentUpon>DeviceTransferPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageEmployees.xaml.cs">
-      <DependentUpon>PageEmployees.xaml</DependentUpon>
+    <Compile Include="Pages\EmployeesPage.xaml.cs">
+      <DependentUpon>EmployeesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageReg.xaml.cs">
-      <DependentUpon>PageReg.xaml</DependentUpon>
+    <Compile Include="Pages\RegistrationPage.xaml.cs">
+      <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageSubdivisions.xaml.cs">
-      <DependentUpon>PageSubdivisions.xaml</DependentUpon>
+    <Compile Include="Pages\SubdivisionsPage.xaml.cs">
+      <DependentUpon>SubdivisionsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\PageTransferTable.xaml.cs">
-      <DependentUpon>PageTransferTable.xaml</DependentUpon>
+    <Compile Include="Pages\TransfersPage.xaml.cs">
+      <DependentUpon>TransfersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
@@ -178,39 +178,39 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Pages\PageAddSubdiv.xaml">
+    <Page Include="Pages\SubdivisionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageAuth.xaml">
+    <Page Include="Pages\AuthorizationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageBuyDevice.xaml">
+    <Page Include="Pages\DevicePurchasePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageDevices.xaml">
+    <Page Include="Pages\DevicesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageDeviceTransfer.xaml">
+    <Page Include="Pages\DeviceTransferPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageEmployees.xaml">
+    <Page Include="Pages\EmployeesPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageReg.xaml">
+    <Page Include="Pages\RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageSubdivisions.xaml">
+    <Page Include="Pages\SubdivisionsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\PageTransferTable.xaml">
+    <Page Include="Pages\TransfersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

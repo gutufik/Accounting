@@ -20,11 +20,11 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageDevices.xaml
     /// </summary>
-    public partial class PageDevices : Page
+    public partial class DevicesPage : Page
     {
         public static List<Device> devices { get; set; }
         private User user_;
-        public PageDevices(User user)
+        public DevicesPage(User user)
         {
             InitializeComponent();
             devices = DataAccess.GetDevices();
@@ -39,7 +39,7 @@ namespace Accounting.Pages
 
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PageBuyDevice(user_));
+            NavigationService.Navigate(new DevicePurchasePage(user_));
         }
 
         private void dgDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -29,22 +29,22 @@ namespace Accounting.Windows
 
         private void btnDevices_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageDevices(user_));
+            MainFrame.NavigationService.Navigate(new Pages.DevicesPage(user_));
         }
 
         private void btnSubdivisions_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageSubdivisions(user_));
+            MainFrame.NavigationService.Navigate(new Pages.SubdivisionsPage(user_));
         }
 
         private void btnDevicesTransfer_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageTransferTable());
+            MainFrame.NavigationService.Navigate(new Pages.TransfersPage());
         }
 
         private void Employee_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.NavigationService.Navigate(new Pages.PageEmployees(user_));
+            MainFrame.NavigationService.Navigate(new Pages.EmployeesPage(user_));
         }
     }
 }

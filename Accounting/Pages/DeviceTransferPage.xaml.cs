@@ -20,11 +20,11 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageDeviceTransfer.xaml
     /// </summary>
-    public partial class PageDeviceTransfer : Page
+    public partial class DeviceTransferPage : Page
     {
         public static List<Device> devices { get; set; }
         public static List<Subdivision> subdivisions { get; set; }
-        public PageDeviceTransfer()
+        public DeviceTransferPage()
         {
             InitializeComponent();
             devices = DataAccess.GetDevices();

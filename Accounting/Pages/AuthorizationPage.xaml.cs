@@ -20,10 +20,10 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageAutn.xaml
     /// </summary>
-    public partial class PageAuth : Page
+    public partial class AuthorizationPage : Page
     {
         public static ObservableCollection<User> users { get; set; }
-        public PageAuth()
+        public AuthorizationPage()
         {
             InitializeComponent();
             
@@ -31,7 +31,7 @@ namespace Accounting.Pages
         }
         private void registerClick(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PageReg());
+            NavigationService.Navigate(new RegistrationPage());
         }
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)

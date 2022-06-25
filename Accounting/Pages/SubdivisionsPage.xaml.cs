@@ -22,11 +22,11 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageSubdivisions.xaml
     /// </summary>
-    public partial class PageSubdivisions : Page
+    public partial class SubdivisionsPage : Page
     {
         public static List<Subdivision> subdivisions { get; set; }
         private User user_;
-        public PageSubdivisions(User user)
+        public SubdivisionsPage(User user)
         {
             InitializeComponent();
             subdivisions = DataAccess.GetSubdivisions();
@@ -41,7 +41,7 @@ namespace Accounting.Pages
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new PageAddSubdiv(user_));
+            NavigationService.Navigate(new SubdivisionPage(user_));
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
@@ -49,7 +49,7 @@ namespace Accounting.Pages
             //var user = dgSubdiv.SelectedItem as Subdiv;
             //DBConnect.connection.Subdivision.Remove(DBConnect.connection.Subdivision.Find(user.ID));
             //DBConnect.connection.SaveChanges();
-            NavigationService.Navigate(new PageSubdivisions(user_));
+            NavigationService.Navigate(new SubdivisionsPage(user_));
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

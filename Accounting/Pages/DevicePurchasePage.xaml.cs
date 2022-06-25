@@ -20,12 +20,12 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageBuyDevice.xaml
     /// </summary>
-    public partial class PageBuyDevice : Page
+    public partial class DevicePurchasePage : Page
     {
         public int price { get; set; }
         public List<Subdivision> subdivisions { get; set; }
         private User user_;
-        public PageBuyDevice(User user)
+        public DevicePurchasePage(User user)
         {
             InitializeComponent();
             var rnd = new Random();

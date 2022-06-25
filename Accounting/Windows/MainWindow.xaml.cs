@@ -22,7 +22,7 @@ namespace Accounting.Windows
         public MainWindow()
         {
             InitializeComponent();
-            Frame_auth.NavigationService.Navigate(new Pages.PageAuth());
+            Frame_auth.NavigationService.Navigate(new Pages.AuthorizationPage());
         }
     }
 }

@@ -25,5 +25,15 @@ namespace Core
         {
             return EquipmentAccountingEntities.GetContext().Transfers.ToList();
         }
+
+        public static List<User> GetUsers()
+        {
+            return EquipmentAccountingEntities.GetContext().Users.ToList();
+        }
+
+        public static User GetUser(string login, string password)
+        {
+            return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
+        }
     }
 }

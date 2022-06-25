@@ -19,9 +19,9 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageReg.xaml
     /// </summary>
-    public partial class PageReg : Page
+    public partial class RegistrationPage : Page
     {
-        public PageReg()
+        public RegistrationPage()
         {
             InitializeComponent();
         }

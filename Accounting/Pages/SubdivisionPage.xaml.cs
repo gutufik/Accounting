@@ -19,10 +19,10 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageAddSubdiv.xaml
     /// </summary>
-    public partial class PageAddSubdiv : Page
+    public partial class SubdivisionPage : Page
     {
         private User user_;
-        public PageAddSubdiv(User user)
+        public SubdivisionPage(User user)
         {
             InitializeComponent();
             user_ = user;
@@ -38,7 +38,7 @@ namespace Accounting.Pages
                 //DBConnect.connection.Subdivisions.Add(s);
                 //DBConnect.connection.SaveChanges();
                 MessageBox.Show("Новое подразделение добавлено");
-                NavigationService.Navigate(new PageSubdivisions(user_));
+                NavigationService.Navigate(new SubdivisionsPage(user_));
             }
             catch
             {

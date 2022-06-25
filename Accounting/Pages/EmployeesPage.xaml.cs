@@ -20,11 +20,11 @@ namespace Accounting.Pages
     /// <summary>
     /// Interaction logic for PageEmployees.xaml
     /// </summary>
-    public partial class PageEmployees : Page
+    public partial class EmployeesPage : Page
     {
         public static List<Employee> employees { get; set; }
         public static User user_;
-        public PageEmployees(User user)
+        public EmployeesPage(User user)
         {
             InitializeComponent();
             //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
