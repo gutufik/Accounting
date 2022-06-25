@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -21,25 +22,11 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageTransferTable : Page
     {
-        public static IEnumerable<Transf> transfers { get; set; }
+        public static List<Transfer> transfers { get; set; }
         public PageTransferTable()
         {
             InitializeComponent();
-            transfers = from t in DBConnect.connection.Transfer.ToList()
-                        join d in DBConnect.connection.Device.ToList()
-                        on t.DeviceID equals d.DeviceID
-                        join e in DBConnect.connection.Employee.ToList()
-                        on t.FinRespPerson equals e.ID
-                        join s in DBConnect.connection.Subdivision.ToList()
-                        on e.SubdivID equals s.SubdivID
-                        select new Transf 
-                        {
-                            DeviceID = d.DeviceID,
-                            Device = d.DeviceName,
-                            Date = (DateTime)t.Date,
-                            RespPerson = e.Name,
-                            Subdivision = s.FullName
-                        };
+            transfers = DataAccess.GetTransfers();
             this.DataContext = this;
         }
 
@@ -50,23 +37,15 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            var user = dgTransfer.SelectedItem as Transf;
-            DBConnect.connection.Transfer.Remove(DBConnect.connection.Transfer.Find(user.DeviceID, user.Date));
-            DBConnect.connection.SaveChanges();
-            NavigationService.Navigate(new PageTransferTable());
+            //var user = dgTransfer.SelectedItem as Transf;
+            //DBConnect.connection.Transfer.Remove(DBConnect.connection.Transfer.Find(user.DeviceID, user.Date));
+            //DBConnect.connection.SaveChanges();
+            //NavigationService.Navigate(new PageTransferTable());
         }
 
         private void dgTransfer_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Del.IsEnabled = true;
         }
-    }
-    public class Transf
-    {
-        public int DeviceID { get; set; }
-        public string Device { get; set; }
-        public DateTime Date { get; set; }
-        public string Subdivision { get; set; }
-        public string RespPerson { get; set; }
     }
 }

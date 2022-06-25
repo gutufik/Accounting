@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -34,8 +35,8 @@ namespace Accounting.Pages
             {
                 s.ShortName = shortName.Text;
                 s.FullName = fullName.Text;
-                DBConnect.connection.Subdivision.Add(s);
-                DBConnect.connection.SaveChanges();
+                //DBConnect.connection.Subdivisions.Add(s);
+                //DBConnect.connection.SaveChanges();
                 MessageBox.Show("Новое подразделение добавлено");
                 NavigationService.Navigate(new PageSubdivisions(user_));
             }

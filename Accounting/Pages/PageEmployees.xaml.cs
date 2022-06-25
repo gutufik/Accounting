@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -21,27 +22,16 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageEmployees : Page
     {
-        public static IEnumerable<Empl> empls { get; set; }
+        public static List<Employee> employees { get; set; }
         public static User user_;
         public PageEmployees(User user)
         {
             InitializeComponent();
             //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
-            empls = from e in DBConnect.connection.Employee.ToList()
-                    join s in DBConnect.connection.Subdivision.ToList()
-                    on e.SubdivID equals s.SubdivID
-                    join p in DBConnect.connection.Position.ToList()
-                    on e.PositionID equals p.PositionID
-                    select new Empl 
-                    {
-                        ID = e.ID,
-                        Name = e.Name,
-                        Position = p.Name,
-                        Subdivision = s.FullName
-                    };
+            employees = DataAccess.GetEmployees();
             user_ = user;
 
-            if (user_.RoleID != 1)
+            if (user_.RoleId != 1)
             {
                 Del.Visibility = Visibility.Hidden;
             }
@@ -55,17 +45,10 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            var user = dgEmp.SelectedItem as Empl;
-            DBConnect.connection.Employee.Remove(DBConnect.connection.Employee.Find(user.ID));
-            DBConnect.connection.SaveChanges();
-            NavigationService.Navigate(new PageEmployees(user_));
+            //var user = dgEmp.SelectedItem as Empl;
+            //DBConnect.connection.Employee.Remove(DBConnect.connection.Employee.Find(user.ID));
+            //DBConnect.connection.SaveChanges();
+            //NavigationService.Navigate(new PageEmployees(user_));
         }
-    }
-    public class Empl
-    {
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Position { get; set; }
-        public string Subdivision { get; set; }
     }
 }

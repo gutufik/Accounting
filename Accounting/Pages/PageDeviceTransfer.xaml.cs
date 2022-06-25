@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -21,48 +22,48 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageDeviceTransfer : Page
     {
-        public static ObservableCollection<Device> devices { get; set; }
-        public static ObservableCollection<Subdivision> subdivisions { get; set; }
+        public static List<Device> devices { get; set; }
+        public static List<Subdivision> subdivisions { get; set; }
         public PageDeviceTransfer()
         {
             InitializeComponent();
-            devices = new ObservableCollection<Device>(DBConnect.connection.Device.ToList());
-            subdivisions = new ObservableCollection<Subdivision>(DBConnect.connection.Subdivision.ToList());
+            devices = DataAccess.GetDevices();
+            subdivisions = DataAccess.GetSubdivisions();
             this.DataContext = this;
         }
 
         private void BtnTransfer_Click(object sender, RoutedEventArgs e)
         {
             var t = new Transfer();
-            try
-            {
-                t.DeviceID = (CbDevice.SelectedItem as Device).DeviceID;
-                t.Date = DateTime.Now;
-                t.FinRespPerson = (from em in DBConnect.connection.Employee.ToList()
-                                   where em.SubdivID ==
-                                 (CbSubdiv.SelectedItem as Subdivision).SubdivID
-                                   select em.ID).FirstOrDefault();
-                DBConnect.connection.Transfer.Add(t);
+            //try
+            //{
+            //    t.DeviceID = (CbDevice.SelectedItem as Device).DeviceID;
+            //    t.Date = DateTime.Now;
+            //    t.FinRespPerson = (from em in DBConnect.connection.Employee.ToList()
+            //                       where em.SubdivID ==
+            //                     (CbSubdiv.SelectedItem as Subdivision).SubdivID
+            //                       select em.ID).FirstOrDefault();
+            //    DBConnect.connection.Transfer.Add(t);
                 
-                var device = DBConnect.connection.Device.SingleOrDefault(d => d.DeviceID == t.DeviceID);
-                device.SubdivID = (int)DBConnect.connection.Employee.SingleOrDefault(em => em.ID == t.FinRespPerson).SubdivID;
+            //    var device = DBConnect.connection.Device.SingleOrDefault(d => d.DeviceID == t.DeviceID);
+            //    device.SubdivID = (int)DBConnect.connection.Employee.SingleOrDefault(em => em.ID == t.FinRespPerson).SubdivID;
                 
-                DBConnect.connection.SaveChanges();
-                MessageBox.Show("Новая передача зарегистрирована");
-                NavigationService.Navigate(new PageTransferTable());
-            }
-            catch
-            {
-                MessageBox.Show("Invalid Transfer", "error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //    DBConnect.connection.SaveChanges();
+            //    MessageBox.Show("Новая передача зарегистрирована");
+            //    NavigationService.Navigate(new PageTransferTable());
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Invalid Transfer", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            RespPerson.Text = (from em in DBConnect.connection.Employee.ToList()
-                       where em.SubdivID ==
-                     ((sender as ComboBox).SelectedItem as Subdivision).SubdivID
-                       select em.Name).FirstOrDefault();
+            //RespPerson.Text = (from em in DBConnect.connection.Employee.ToList()
+            //           where em.SubdivID ==
+            //         ((sender as ComboBox).SelectedItem as Subdivision).SubdivID
+            //           select em.Name).FirstOrDefault();
         }
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -22,7 +23,7 @@ namespace Accounting.Pages
     public partial class PageBuyDevice : Page
     {
         public int price { get; set; }
-        public static ObservableCollection<Subdivision> subdivisions { get; set; }
+        public List<Subdivision> subdivisions { get; set; }
         private User user_;
         public PageBuyDevice(User user)
         {
@@ -30,7 +31,7 @@ namespace Accounting.Pages
             var rnd = new Random();
             price = rnd.Next(1000, 5000);
             BtnBuy.Content = $"Купить за {price}р";
-            subdivisions = new ObservableCollection<Subdivision>(DBConnect.connection.Subdivision.ToList());
+            subdivisions = DataAccess.GetSubdivisions();
             user_ = user;
             this.DataContext = this;
         }
@@ -40,16 +41,16 @@ namespace Accounting.Pages
             var d = new Device();
             try
             {
-                d.DeviceName = tbName.Text;
-                d.Model = tbModel.Text;
-                d.Room = int.Parse(tbRoom.Text);
-                d.PurchaseDate = DateTime.Now;
-                d.Price = price;
-                d.SubdivID = (cbSubdiv.SelectedItem as Subdivision).SubdivID;
-                DBConnect.connection.Device.Add(d);
-                DBConnect.connection.SaveChanges();
-                MessageBox.Show("Новая техника доставлена");
-                NavigationService.Navigate(new PageDevices(user_));
+                //d.Name = tbName.Text;
+                //d.Model = tbModel.Text;
+                //d.RoomNumber = int.Parse(tbRoom.Text);
+                //d.PurchaseDate = DateTime.Now;
+                //d.Price = price;
+                //d.SubdivID = (cbSubdiv.SelectedItem as Subdivision).SubdivID;
+                //DBConnect.connection.Device.Add(d);
+                //DBConnect.connection.SaveChanges();
+                //MessageBox.Show("Новая техника доставлена");
+                //NavigationService.Navigate(new PageDevices(user_));
             }
             catch
             {

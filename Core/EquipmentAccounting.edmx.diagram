@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6372fe9424424c5295ac617c15736a45" Name="Diagram1">
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Device" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Employee" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Position" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Role" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Subdivision" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.sysdiagram" Width="1.5" PointX="5.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.Transfer" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EquipmentAccountingModel.User" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_Device_Subdivision" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_Transfer_Device" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_Employee_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_Employee_Subdivision" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_Transfer_Employee" ManuallyRouted="false" />
+        <AssociationConnector Association="EquipmentAccountingModel.FK_User_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

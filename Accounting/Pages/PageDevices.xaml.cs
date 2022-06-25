@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -21,26 +22,14 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageDevices : Page
     {
-        public static IEnumerable<Dev> devices { get; set; }
+        public static List<Device> devices { get; set; }
         private User user_;
         public PageDevices(User user)
         {
             InitializeComponent();
-            devices = from d in DBConnect.connection.Device.ToList()
-                      join s in DBConnect.connection.Subdivision.ToList()
-                      on d.SubdivID equals s.SubdivID
-                      select new Dev
-                      {
-                          ID = d.DeviceID,
-                          Name = d.DeviceName,
-                          Model = d.Model,
-                          Date = (DateTime)(d.PurchaseDate),
-                          Room = (int)d.Room,
-                          Price = (int)d.Price,
-                          Subdivision = s.FullName
-                      };
+            devices = DataAccess.GetDevices();
             user_ = user;
-            if (user_.RoleID != 1)
+            if (user_.RoleId != 1)
             {
                 BtnBuy.Visibility = Visibility.Hidden;
                 BtnDel.Visibility = Visibility.Hidden;
@@ -55,26 +44,16 @@ namespace Accounting.Pages
 
         private void dgDevice_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (user_.RoleID == 1)
+            if (user_.RoleId == 1)
                 BtnDel.IsEnabled = true;
         }
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            var user = dgDevice.SelectedItem as Dev;
-            DBConnect.connection.Device.Remove(DBConnect.connection.Device.Find(user.ID));
-            DBConnect.connection.SaveChanges();
-            NavigationService.Navigate(new PageDevices(user_));
+            //var user = dgDevice.SelectedItem as Dev;
+            //DBConnect.connection.Devices.Remove(DBConnect.connection.Devices.Find(user.ID));
+            //DBConnect.connection.SaveChanges();
+            //NavigationService.Navigate(new PageDevices(user_));
         }
-    }
-    public class Dev
-    { 
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public string Model { get; set; }
-        public DateTime Date { get; set; }
-        public int Room { get; set; }
-        public int Price { get; set; }
-        public string Subdivision { get; set; }
     }
 }

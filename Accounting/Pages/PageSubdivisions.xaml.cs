@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -23,20 +24,14 @@ namespace Accounting.Pages
     /// </summary>
     public partial class PageSubdivisions : Page
     {
-        public static IEnumerable<Subdiv> subdivisions { get; set; }
+        public static List<Subdivision> subdivisions { get; set; }
         private User user_;
         public PageSubdivisions(User user)
         {
             InitializeComponent();
-            subdivisions = from s in DBConnect.connection.Subdivision.ToList()
-                           select new Subdiv 
-                           {
-                               ID = s.SubdivID,
-                               ShortName = s.ShortName,
-                               FullName = s.FullName
-                           };
+            subdivisions = DataAccess.GetSubdivisions();
             user_ = user;
-            if (user_.RoleID != 1)
+            if (user_.RoleId != 1)
             {
                 Add.Visibility = Visibility.Hidden;
                 Del.Visibility = Visibility.Hidden;
@@ -51,9 +46,9 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            var user = dgSubdiv.SelectedItem as Subdiv;
-            DBConnect.connection.Subdivision.Remove(DBConnect.connection.Subdivision.Find(user.ID));
-            DBConnect.connection.SaveChanges();
+            //var user = dgSubdiv.SelectedItem as Subdiv;
+            //DBConnect.connection.Subdivision.Remove(DBConnect.connection.Subdivision.Find(user.ID));
+            //DBConnect.connection.SaveChanges();
             NavigationService.Navigate(new PageSubdivisions(user_));
         }
 
@@ -80,7 +75,7 @@ namespace Accounting.Pages
 
             for (int i = 0; i < subdivisions_.Count(); i++)
             {
-                worksheet.Cells[1][rowIndex] = subdivisions_[i].ID;
+                worksheet.Cells[1][rowIndex] = subdivisions_[i].Id;
                 worksheet.Cells[2][rowIndex] = subdivisions_[i].ShortName;
                 worksheet.Cells[3][rowIndex] = subdivisions_[i].FullName;
                 rowIndex++;
@@ -106,7 +101,7 @@ namespace Accounting.Pages
             for (int i = 0; i < subdivisions_.Count; i++)
             {
                 var cellRange = table.Cell(i + 1, 1).Range;
-                cellRange.Text = subdivisions_[i].ID.ToString();
+                cellRange.Text = subdivisions_[i].Id.ToString();
 
                 cellRange = table.Cell(i + 1, 2).Range;
                 cellRange.Text = subdivisions_[i].ShortName;
@@ -118,11 +113,5 @@ namespace Accounting.Pages
 
             application.Visible = true;
         }
-    }
-    public class Subdiv
-    { 
-        public int ID { get; set; }
-        public string ShortName { get; set; }
-        public string FullName { get; set; }
     }
 }

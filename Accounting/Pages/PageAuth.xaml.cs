@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using Core;
 
 namespace Accounting.Pages
 {
@@ -35,18 +36,18 @@ namespace Accounting.Pages
 
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            users = new ObservableCollection<User>(DBConnect.connection.User.ToList());
-            var user = users.Where(a => a.Login == txtLogin.Text && a.Password == txtPassword.Password).FirstOrDefault();
-            if (user != null)
-            {
-                Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
-                homeWindow.Show();
-                Application.Current.MainWindow.Close();
-            }
-            else
-            {
-                MessageBox.Show("Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            //users = DataAccess.GetUsers();
+            //var user = users.Where(a => a.Login == txtLogin.Text && a.Password == txtPassword.Password).FirstOrDefault();
+            //if (user != null)
+            //{
+            //    Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
+            //    homeWindow.Show();
+            //    Application.Current.MainWindow.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Неверный логин или пароль!", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
     }
 }
