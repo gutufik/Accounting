@@ -36,6 +36,22 @@ namespace Core
             return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
         }
 
+        public static void SaveSubdivision(Subdivision subdivision)
+        {
+            if (GetSubdivisions().FirstOrDefault(s => s.Id == subdivision.Id) == null)
+                EquipmentAccountingEntities.GetContext().Subdivisions.Add(subdivision);
+
+            EquipmentAccountingEntities.GetContext().SaveChanges();
+        }
+
+        public static void SaveDevice(Device device)
+        {
+            if (GetDevices().FirstOrDefault(d => d.Id == device.Id) == null)
+                EquipmentAccountingEntities.GetContext().Devices.Add(device);
+
+            EquipmentAccountingEntities.GetContext().SaveChanges();
+        }
+
         public static bool RegisterUser(User user)
         { 
             EquipmentAccountingEntities.GetContext().Users.Add(user);

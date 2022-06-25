@@ -17,7 +17,7 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView>
+        <ListView x:Name="LvDevices" ItemsSource="{Binding Devices}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -32,7 +32,7 @@
                         <GridViewColumn Header="Цена" 
                                         DisplayMemberBinding="{Binding Price}"/>
                         <GridViewColumn Header="Подразделение" 
-                                        DisplayMemberBinding="{Binding Subdivision.Name}"/>
+                                        DisplayMemberBinding="{Binding Subdivision.ShortName}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

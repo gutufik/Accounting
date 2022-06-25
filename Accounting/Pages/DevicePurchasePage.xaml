@@ -7,14 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageBuyDevice" Background="#FF9AE2EE">
-    <Page.Resources>
-        <Style TargetType="Button">
-            <Setter Property="FontFamily" Value="Verdana" />
-            <Setter Property="Background" Value="Blue" />
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Margin" Value="10" />
-        </Style>
-    </Page.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,20 +24,30 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Закупка техники" FontSize="40" Grid.Column="1" HorizontalAlignment="Center"/>
         <StackPanel Grid.Column="1" Grid.Row="1">
-            <TextBlock Text="Название" FontSize="35" Margin="10"/>
-            <TextBox x:Name="tbName" FontSize="30" Margin="20"/>
+            <TextBlock Text="Название" FontSize="35" />
+            <TextBox x:Name="tbName" 
+                     FontSize="30"
+                     Text="{Binding Device.Name}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="2">
-            <TextBlock Text="Модель" FontSize="35" Margin="10"/>
-            <TextBox x:Name="tbModel" FontSize="30" Margin="20"/>
+            <TextBlock Text="Модель" FontSize="35" />
+            <TextBox x:Name="tbModel" 
+                     FontSize="30"
+                     Text="{Binding Device.Model}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="3">
-            <TextBlock Text="Комната доставки" FontSize="35" Margin="10"/>
-            <TextBox  FontSize="30" Margin="20" x:Name="tbRoom"/>
+            <TextBlock Text="Комната доставки" FontSize="35" />
+            <TextBox x:Name="tbRoom" 
+                     FontSize="30" 
+                     Text="{Binding Device.RoomNumber}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="4">
-            <TextBlock Text="Подразделение" FontSize="35" Margin="10"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding subdivisions}" FontSize ="30" x:Name="cbSubdiv">
+            <TextBlock Text="Подразделение" FontSize="35" />
+            <ComboBox x:Name="cbSubdiv"
+                      Grid.Row="1" Grid.Column="1" 
+                      ItemsSource="{Binding subdivisions}"
+                      SelectedItem="{Binding Device.Subdivision}"
+                      FontSize ="30" >
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>

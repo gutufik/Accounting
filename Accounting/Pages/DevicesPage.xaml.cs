@@ -22,12 +22,12 @@ namespace Accounting.Pages
     /// </summary>
     public partial class DevicesPage : Page
     {
-        public static List<Device> devices { get; set; }
+        public static List<Device> Devices { get; set; }
         private User user_;
         public DevicesPage(User user)
         {
             InitializeComponent();
-            devices = DataAccess.GetDevices();
+            Devices = DataAccess.GetDevices();
             user_ = user;
             if (user_.RoleId != 1)
             {

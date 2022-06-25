@@ -33,7 +33,7 @@
                     Click="btnDevices_Click"/>
             
             <Button x:Name="btnDevicesTransfer" 
-                    Content="Предача техники" 
+                    Content="Передача техники" 
                     Margin="40,0,40,0" 
                     FontSize="25" 
                     Height="60" 

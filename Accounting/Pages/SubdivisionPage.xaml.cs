@@ -22,29 +22,19 @@ namespace Accounting.Pages
     public partial class SubdivisionPage : Page
     {
         private User user_;
+        public Subdivision Subdivision { get; set; }
         public SubdivisionPage(User user)
         {
             InitializeComponent();
             user_ = user;
+            Subdivision = new Subdivision();
+            DataContext = Subdivision;
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            var s = new Subdivision();
-            try
-            {
-                s.ShortName = shortName.Text;
-                s.FullName = fullName.Text;
-                //DBConnect.connection.Subdivisions.Add(s);
-                //DBConnect.connection.SaveChanges();
-                MessageBox.Show("Новое подразделение добавлено");
-                NavigationService.Navigate(new SubdivisionsPage(user_));
-            }
-            catch
-            {
-                MessageBox.Show("Invalid subdivision", "error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            DataAccess.SaveSubdivision(Subdivision);
+            NavigationService.GoBack();
         }
-
     }
 }

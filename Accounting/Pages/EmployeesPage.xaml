@@ -16,9 +16,17 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="dgEmp" Grid.Row="0" Grid.Column="0" AutoGenerateColumns="True" ItemsSource="{Binding empls}" IsReadOnly="True" FontSize="35" SelectionChanged="dgEmp_SelectionChanged">
-
-        </DataGrid>
+        <ListView x:Name="LvEmployees" ItemsSource="{Binding Employees}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding FirstName}"/>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="Подразделение" DisplayMemberBinding="{Binding Subdivision.Name}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <StackPanel Grid.Row="1" >
             <Button x:Name="Del" Content="Удалить" Click="Del_Click"  FontSize="20" IsEnabled="False"/>
         </StackPanel>
