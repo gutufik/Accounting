@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Core;
+using Accounting.Windows;
 
 namespace Accounting.Pages
 {
@@ -24,6 +25,9 @@ namespace Accounting.Pages
     {
         public static List<Device> Devices { get; set; }
         private User user_;
+        private static NavigationService NavigationService { get; }
+            = (Application.Current.MainWindow as HomeWindow).MainFrame.NavigationService;
+
         public DevicesPage(User user)
         {
             InitializeComponent();
@@ -35,8 +39,16 @@ namespace Accounting.Pages
                 BtnDel.Visibility = Visibility.Hidden;
             }
             this.DataContext = this;
+
+            NavigationService.Navigated += RefreshList;
         }
 
+        private void RefreshList(object sender, NavigationEventArgs e)
+        { 
+            Devices = DataAccess.GetDevices();
+            LvDevices.ItemsSource = Devices;
+            LvDevices.Items.Refresh();
+        }
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new DevicePurchasePage(user_));

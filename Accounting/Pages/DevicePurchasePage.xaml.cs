@@ -22,18 +22,13 @@ namespace Accounting.Pages
     /// </summary>
     public partial class DevicePurchasePage : Page
     {
-        public int price { get; set; }
         public List<Subdivision> subdivisions { get; set; }
-
         public Device Device { get; set; }
         private User user_;
         public DevicePurchasePage(User user)
         {
             InitializeComponent();
-            var rnd = new Random();
             Device = new Device();
-            price = rnd.Next(1000, 5000);
-            BtnBuy.Content = $"Купить за {price}р";
             subdivisions = DataAccess.GetSubdivisions();
             user_ = user;
             this.DataContext = this;

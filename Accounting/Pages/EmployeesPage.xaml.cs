@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Core;
+using Accounting.Windows;
 
 namespace Accounting.Pages
 {
@@ -22,13 +23,15 @@ namespace Accounting.Pages
     /// </summary>
     public partial class EmployeesPage : Page
     {
-        public static List<Employee> employees { get; set; }
+        public static List<Employee> Employees { get; set; }
         public static User user_;
+        private static NavigationService NavigationService { get; }
+            = (Application.Current.MainWindow as HomeWindow).MainFrame.NavigationService;
         public EmployeesPage(User user)
         {
             InitializeComponent();
             //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
-            employees = DataAccess.GetEmployees();
+            Employees = DataAccess.GetEmployees();
             user_ = user;
 
             if (user_.RoleId != 1)
@@ -36,6 +39,14 @@ namespace Accounting.Pages
                 Del.Visibility = Visibility.Hidden;
             }
             this.DataContext = this;
+
+            NavigationService.Navigated += RefreshList;
+        }
+        private void RefreshList(object sender, NavigationEventArgs e)
+        {
+            Employees = DataAccess.GetEmployees();
+            LvEmployees.ItemsSource = Employees;
+            LvEmployees.Items.Refresh();
         }
 
         private void dgEmp_SelectionChanged(object sender, SelectionChangedEventArgs e)

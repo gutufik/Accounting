@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using Core;
+using Accounting.Windows;
 
 namespace Accounting.Pages
 {
@@ -24,12 +25,14 @@ namespace Accounting.Pages
     /// </summary>
     public partial class SubdivisionsPage : Page
     {
-        public static List<Subdivision> subdivisions { get; set; }
+        public static List<Subdivision> Subdivisions { get; set; }
+        private static NavigationService NavigationService { get; }
+            = (Application.Current.MainWindow as HomeWindow).MainFrame.NavigationService;
         private User user_;
         public SubdivisionsPage(User user)
         {
             InitializeComponent();
-            subdivisions = DataAccess.GetSubdivisions();
+            Subdivisions = DataAccess.GetSubdivisions();
             user_ = user;
             if (user_.RoleId != 1)
             {
@@ -37,11 +40,19 @@ namespace Accounting.Pages
                 Del.Visibility = Visibility.Hidden;
             }
             this.DataContext = this;
+
+            NavigationService.Navigated += RefreshList;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new SubdivisionPage(user_));
+        }
+        private void RefreshList(object sender, NavigationEventArgs e)
+        {
+            Subdivisions = DataAccess.GetSubdivisions();
+            LvSubdivisions.ItemsSource = Subdivisions;
+            LvSubdivisions.Items.Refresh();
         }
 
         private void Del_Click(object sender, RoutedEventArgs e)
@@ -59,7 +70,7 @@ namespace Accounting.Pages
 
         private void Export_Click(object sender, RoutedEventArgs e)
         {
-            var subdivisions_ = subdivisions.ToList();
+            var subdivisions_ = Subdivisions.ToList();
             var application = new Excel.Application();
             application.SheetsInNewWorkbook = 1;
 
@@ -88,7 +99,7 @@ namespace Accounting.Pages
 
         private void Word_Click(object sender, RoutedEventArgs e)
         {
-            var subdivisions_ = subdivisions.ToList();
+            var subdivisions_ = Subdivisions.ToList();
             var application = new Word.Application();
             Word.Document document = application.Documents.Add();
 

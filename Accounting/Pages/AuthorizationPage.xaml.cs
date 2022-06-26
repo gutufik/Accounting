@@ -41,9 +41,8 @@ namespace Accounting.Pages
             var user = DataAccess.GetUser(login, password);
             if (user != null)
             {
-                Windows.HomeWindow homeWindow = new Windows.HomeWindow(user);
-                homeWindow.Show();
-                Application.Current.MainWindow.Close();
+                App.User = user;
+                App.Current.MainWindow.Close();
             }
             else
             {

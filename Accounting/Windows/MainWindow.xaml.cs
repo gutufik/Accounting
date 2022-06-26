@@ -23,6 +23,17 @@ namespace Accounting.Windows
         {
             InitializeComponent();
             Frame_auth.NavigationService.Navigate(new Pages.AuthorizationPage());
+            this.Closing += new System.ComponentModel.CancelEventHandler(WindowClosing);
+        }
+
+        private void WindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (App.User != null)
+            {
+                HomeWindow homeWindow = new HomeWindow();
+                homeWindow.Show();
+                App.Current.MainWindow = homeWindow;
+            }
         }
     }
 }

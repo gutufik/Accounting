@@ -39,7 +39,8 @@ namespace Accounting.Pages
         {
             if (DataAccess.RegisterUser(User))
             {
-                Windows.HomeWindow homeWindow = new Windows.HomeWindow(User);
+                App.User = User;
+                Windows.HomeWindow homeWindow = new Windows.HomeWindow();
                 homeWindow.Show();
                 Application.Current.MainWindow.Close();
             }

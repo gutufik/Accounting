@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Core;
+using Accounting.Windows;
 
 namespace Accounting.Pages
 {
@@ -22,12 +23,22 @@ namespace Accounting.Pages
     /// </summary>
     public partial class TransfersPage : Page
     {
-        public static List<Transfer> transfers { get; set; }
+        public static List<Transfer> Transfers { get; set; }
+        private static NavigationService NavigationService { get; }
+            = (Application.Current.MainWindow as HomeWindow).MainFrame.NavigationService;
         public TransfersPage()
         {
             InitializeComponent();
-            transfers = DataAccess.GetTransfers();
+            Transfers = DataAccess.GetTransfers();
             this.DataContext = this;
+
+            NavigationService.Navigated += RefreshList;
+        }
+        private void RefreshList(object sender, NavigationEventArgs e)
+        {
+            Transfers = DataAccess.GetTransfers();
+            LvTransfers.ItemsSource = Transfers;
+            LvTransfers.Items.Refresh();
         }
 
         private void AddTransfer_Click(object sender, RoutedEventArgs e)

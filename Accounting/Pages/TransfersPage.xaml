@@ -16,7 +16,8 @@
             <RowDefinition Height="9*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView>
+        <ListView x:Name="LvTransfers"
+                  ItemsSource="{Binding Transfers}">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>

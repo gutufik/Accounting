@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Core;
 
 namespace Accounting
 {
@@ -13,6 +14,6 @@ namespace Accounting
     /// </summary>
     public partial class App : Application
     {
-
+        public static User User { get; set; }
     }
 }
