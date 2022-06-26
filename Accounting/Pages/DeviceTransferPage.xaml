@@ -6,7 +6,9 @@
       xmlns:local="clr-namespace:Accounting.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageDeviceTransfer" Background="#FF9AE2EE">
+      Title="PageDeviceTransfer" >
+    <Border Background="AliceBlue" BorderBrush="Aqua" BorderThickness="3" CornerRadius="50">
+        
     <Grid>
         
         <Grid.RowDefinitions>
@@ -19,30 +21,54 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="Передача техники" Grid.Row="0" Grid.Column="1" FontSize="40" HorizontalAlignment="Center"/>
+        <TextBlock Text="Передача техники"
+                   Grid.ColumnSpan="3"
+                   FontSize="40" 
+                   HorizontalAlignment="Center"/>
 
-        <TextBlock Text="Техника" Grid.Row="1" Grid.Column="0" FontSize="30" HorizontalAlignment="Center"/>
-        <TextBlock Text="Подразделение" Grid.Row="1" Grid.Column="1" FontSize="30" HorizontalAlignment="Center"/>
-        <TextBlock Text="Ответственное лицо" Grid.Row="1" Grid.Column="2" FontSize="30" HorizontalAlignment="Center"/>
-        <ComboBox Grid.Row="1" Grid.Column="0" ItemsSource="{Binding devices}" x:Name="CbDevice">
+        <TextBlock Text="Техника" 
+                   Grid.Row="1" FontSize="30" 
+                   HorizontalAlignment="Center"/>
+        <TextBlock Text="Подразделение" 
+                   Grid.Row="1" Grid.Column="1" FontSize="30" 
+                   HorizontalAlignment="Center"/>
+        <TextBlock Text="Ответственное лицо" 
+                   Grid.Row="1" Grid.Column="2" FontSize="30" 
+                   HorizontalAlignment="Center"/>
+        <ComboBox x:Name="CbDevice"
+                  Grid.Row="1" ItemsSource="{Binding Devices}" Margin="10">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name}" TextWrapping="Wrap"/>
+                            <TextBlock Text="{Binding Name}" FontSize="18" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="CbSubdiv" ItemsSource="{Binding subdivisions}" SelectionChanged="ComboBox_SelectionChanged">
+        <ComboBox x:Name="CbSubdiv"
+                  Grid.Row="1" Grid.Column="1"  
+                  ItemsSource="{Binding Subdivisions}" 
+                  SelectionChanged="ComboBox_SelectionChanged"
+                  Margin="10">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding FullName}" TextWrapping="Wrap"/>
+                        <TextBlock Text="{Binding FullName}" FontSize="18" TextWrapping="Wrap"/>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <TextBox Grid.Row="1" Grid.Column="2" x:Name="RespPerson" IsEnabled="False"/>
-        <Button x:Name="BtnTransfer" Content="Передать" FontSize="30" Grid.Row="3" Grid.Column="1" Height="120" Click="BtnTransfer_Click"/>
+        <TextBox x:Name="RespPerson"
+                 VerticalAlignment="Center"
+                 Margin="10"
+                 Text="Токарев Егор"
+                 FontSize="18"
+                 Grid.Row="1" Grid.Column="2"  
+                 IsEnabled="False"/>
+        <Button x:Name="BtnTransfer" 
+                Content="Передать" 
+                FontSize="30" Grid.Row="3" Grid.Column="1"
+                Height="60" Click="BtnTransfer_Click"/>
     </Grid>
+    </Border>
 </Page>

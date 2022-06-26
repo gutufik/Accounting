@@ -21,15 +21,21 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date}"/>
-                        <GridViewColumn Header="Подразделение" DisplayMemberBinding="{Binding Subdivision}"/>
+                        <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding Date, StringFormat=d, ConverterCulture=ru-RU}"/>
+                        <GridViewColumn Header="Подразделение">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding Employee.Subdivision.FullName}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Оборудование" DisplayMemberBinding="{Binding Device.Name}"/>
                         <GridViewColumn Header="Ответственное лицо">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Employee.FirstName}"/>
-                                        <TextBlock Text="{Binding Employee.LastName}"/>
+                                        <TextBlock Text="{Binding Employee.FirstName}" Margin="5"/>
+                                        <TextBlock Text="{Binding Employee.LastName}" Margin="5"/>
                                     </StackPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>

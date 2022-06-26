@@ -26,20 +26,20 @@
                         <GridViewColumn Header="Модель" 
                                         DisplayMemberBinding="{Binding Model}"/>
                         <GridViewColumn Header="Дата покупки" 
-                                        DisplayMemberBinding="{Binding PurchaseDate}"/>
+                                        DisplayMemberBinding="{Binding PurchaseDate, StringFormat=d, ConverterCulture=ru-Ru}"/>
                         <GridViewColumn Header="Номер комнаты" 
                                         DisplayMemberBinding="{Binding RoomNumber}"/>
                         <GridViewColumn Header="Цена" 
                                         DisplayMemberBinding="{Binding Price}"/>
                         <GridViewColumn Header="Подразделение" 
-                                        DisplayMemberBinding="{Binding Subdivision.ShortName}"/>
+                                        DisplayMemberBinding="{Binding Subdivision.FullName}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button x:Name="BtnBuy" Content="Закупить"  FontSize="25" Click="BtnBuy_Click"/>
-            <Button x:Name="BtnDel" Content="Удалить" FontSize="25" Click="BtnDel_Click" IsEnabled="False"/>
+            <Button x:Name="BtnBuy" Content="Закупить"  FontSize="20" Margin="10" Click="BtnBuy_Click"/>
+            <Button x:Name="BtnDel" Content="Удалить" FontSize="20" Margin="10" Click="BtnDel_Click" IsEnabled="False"/>
         </StackPanel>
         
     </Grid>

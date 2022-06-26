@@ -6,8 +6,9 @@
       xmlns:local="clr-namespace:Accounting.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="PageAddSubdiv" Background="#FF9AE2EE">
-
+      Title="PageAddSubdiv">
+    <Border Background="AliceBlue" BorderBrush="Aqua" CornerRadius="50" BorderThickness="3">
+        
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -31,6 +32,7 @@
                      Text="{Binding FullName}"
                      FontSize="30" />
         </StackPanel>
-        <Button x:Name="BtnAdd" Grid.Column="1" Grid.Row="2" Content="Добавить" FontSize="30" Width="300" Height="100" Click="BtnAdd_Click"/>
+        <Button x:Name="BtnAdd" Grid.Column="1" Grid.Row="2" Content="Добавить" FontSize="30" Width="300" Height="50" Click="BtnAdd_Click"/>
     </Grid>
+    </Border>
 </Page>

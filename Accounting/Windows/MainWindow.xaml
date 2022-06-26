@@ -19,9 +19,15 @@
             <RowDefinition Height="2*"/>
             <RowDefinition />
         </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="1" Grid.Column="1" Background="Aqua">
+        <Border Background="Azure" CornerRadius="50"
+                BorderThickness="3" BorderBrush="Aqua"
+                Grid.Column="1" Grid.Row="1">
+            
+        <StackPanel>
             <Frame x:Name="Frame_auth" NavigationUIVisibility="Hidden"></Frame>
         </StackPanel>
+        </Border>
+        <Image Source="/Accounting;component/Images/background.png" 
+               Grid.RowSpan="3" Grid.ColumnSpan="3" Panel.ZIndex="-1"/>
     </Grid>
 </Window>

@@ -22,13 +22,16 @@ namespace Accounting.Pages
     /// </summary>
     public partial class DeviceTransferPage : Page
     {
-        public static List<Device> devices { get; set; }
-        public static List<Subdivision> subdivisions { get; set; }
+        public List<Device> Devices { get; set; }
+        public List<Subdivision> Subdivisions { get; set; }
+        public Transfer Transfer { get; set; }
+
         public DeviceTransferPage()
         {
             InitializeComponent();
-            devices = DataAccess.GetDevices();
-            subdivisions = DataAccess.GetSubdivisions();
+            Devices = DataAccess.GetDevices();
+            Subdivisions = DataAccess.GetSubdivisions();
+            Transfer = new Transfer();
             this.DataContext = this;
         }
 

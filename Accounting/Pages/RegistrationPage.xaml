@@ -20,6 +20,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <TextBlock Text="Регистрация"
@@ -34,16 +35,22 @@
                    Grid.Row="1"  
                    FontSize="30" 
                    HorizontalAlignment="Center"/>
+        <TextBlock Text="Фамилия"  
+                   TextAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Grid.Row="2"  
+                   FontSize="30" 
+                   HorizontalAlignment="Center"/>
         <TextBlock Text="Логин"  
                    TextAlignment="Center" 
                    VerticalAlignment="Center" 
-                   Grid.Row="2"
+                   Grid.Row="3"
                    FontSize="30" 
                    HorizontalAlignment="Center"/>
         <TextBlock Text="Пароль"
                    TextAlignment="Center"
                    VerticalAlignment="Center"
-                   Grid.Row="3"
+                   Grid.Row="4"
                    FontSize="30"
                    HorizontalAlignment="Center"/>
 
@@ -53,24 +60,34 @@
                  Text="{Binding LastName}"
                  FontSize="30" />
         
+        <TextBox x:Name="TbFirstName"
+                 Grid.Row="2" Grid.Column="1"
+                 VerticalAlignment="Center"
+                 Text="{Binding FirstName}"
+                 FontSize="30" />
+        
         <TextBox x:Name="txtLogin" 
-                 Grid.Row="2" 
+                 Grid.Row="3" 
                  Grid.Column="1" 
                  VerticalAlignment="Center" 
                  Text="{Binding Login}"
                  FontSize="30" />
 
         <PasswordBox x:Name="txtPassword" 
-                     Grid.Row="3" 
+                     Grid.Row="4" 
                      Grid.Column="1" 
                      VerticalAlignment="Center" 
                      FontSize="30" />
 
-        <StackPanel Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+        <StackPanel Grid.Column="0" Grid.Row="5" 
+                    Grid.ColumnSpan="2" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
             <Button x:Name="btnBack"
+                    Margin="10"
                     Content="Назад"  
                     Click="btnBack_Click"/>
             <Button x:Name="btnReg" 
+                    Margin="10"
                     Content="Зарегистрироваться"
                     Click="btnReg_Click"/>
         </StackPanel>

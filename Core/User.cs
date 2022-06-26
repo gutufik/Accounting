@@ -18,7 +18,9 @@ namespace Core
         public string Login { get; set; }
         public string Password { get; set; }
         public Nullable<int> RoleId { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
     
+        public virtual Employee Employee { get; set; }
         public virtual Role Role { get; set; }
     }
 }

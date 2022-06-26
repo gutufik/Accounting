@@ -22,7 +22,7 @@
                     <GridView.Columns>
                         <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding FirstName}"/>
                         <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding LastName}"/>
-                        <GridViewColumn Header="Подразделение" DisplayMemberBinding="{Binding Subdivision.Name}"/>
+                        <GridViewColumn Header="Подразделение" DisplayMemberBinding="{Binding Subdivision.FullName}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

@@ -30,10 +30,12 @@
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center"  Margin="10">
             <Button x:Name="btnRegister" 
                     Content="Регистрация" 
-                    Click="registerClick"/>
+                    Click="registerClick"
+                    Margin="10"/>
             <Button x:Name="btnLogin" 
                     Content="Войти" 
-                    Click="btnLogin_Click"/>
+                    Click="btnLogin_Click"
+                    Margin="10"/>
         </StackPanel>
 
 
