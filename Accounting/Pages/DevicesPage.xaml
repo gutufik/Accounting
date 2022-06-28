@@ -14,10 +14,16 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView x:Name="LvDevices" ItemsSource="{Binding Devices}">
+        <ListView x:Name="LvDevices" ItemsSource="{Binding Devices}" SelectionChanged="dgDevice_SelectionChanged">
+            <ListView.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </ListView.Resources>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
@@ -26,11 +32,14 @@
                         <GridViewColumn Header="Модель" 
                                         DisplayMemberBinding="{Binding Model}"/>
                         <GridViewColumn Header="Дата покупки" 
-                                        DisplayMemberBinding="{Binding PurchaseDate, StringFormat=d, ConverterCulture=ru-Ru}"/>
+                                        DisplayMemberBinding="{Binding PurchaseDate, StringFormat=d, ConverterCulture=ru-Ru}"
+                                        Width="150"/>
                         <GridViewColumn Header="Номер комнаты" 
-                                        DisplayMemberBinding="{Binding RoomNumber}"/>
+                                        DisplayMemberBinding="{Binding RoomNumber}"
+                                        Width="170"/>
                         <GridViewColumn Header="Цена" 
-                                        DisplayMemberBinding="{Binding Price}"/>
+                                        DisplayMemberBinding="{Binding Price}"
+                                        Width="100"/>
                         <GridViewColumn Header="Подразделение" 
                                         DisplayMemberBinding="{Binding Subdivision.FullName}"/>
                     </GridView.Columns>

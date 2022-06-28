@@ -41,14 +41,18 @@ namespace Accounting.Pages
             }
             this.DataContext = this;
 
-            NavigationService.Navigated += RefreshList;
+            NavigationService.Navigated += RefreshListOnNavigate;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new SubdivisionPage(user_));
         }
-        private void RefreshList(object sender, NavigationEventArgs e)
+        private void RefreshListOnNavigate(object sender, NavigationEventArgs e)
+        {
+            RefreshList();
+        }
+        private void RefreshList()
         {
             Subdivisions = DataAccess.GetSubdivisions();
             LvSubdivisions.ItemsSource = Subdivisions;
@@ -57,10 +61,11 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            //var user = dgSubdiv.SelectedItem as Subdiv;
-            //DBConnect.connection.Subdivision.Remove(DBConnect.connection.Subdivision.Find(user.ID));
-            //DBConnect.connection.SaveChanges();
-            NavigationService.Navigate(new SubdivisionsPage(user_));
+            var subdivision = (Subdivision)LvSubdivisions.SelectedItem;
+            subdivision.IsDeleted = true;
+            DataAccess.SaveSubdivision(subdivision);
+
+            RefreshList();
         }
 
         private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

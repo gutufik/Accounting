@@ -18,6 +18,7 @@ namespace Core
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> DeviceId { get; set; }
         public Nullable<int> ResponsiblePersonId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Device Device { get; set; }
         public virtual Employee Employee { get; set; }

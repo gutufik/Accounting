@@ -40,7 +40,10 @@
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                            <TextBlock Text="{Binding Name}" FontSize="18" TextWrapping="Wrap"/>
+                            <TextBlock  FontSize="18" TextWrapping="Wrap">
+                                <Run Text="{Binding Name}"/>
+                                <Run Text="{Binding Model}"/>
+                            </TextBlock>
                     </StackPanel>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
@@ -61,7 +64,6 @@
         <TextBox x:Name="RespPerson"
                  VerticalAlignment="Center"
                  Margin="10"
-                 Text="Токарев Егор"
                  FontSize="18"
                  Grid.Row="1" Grid.Column="2"  
                  IsEnabled="False"/>

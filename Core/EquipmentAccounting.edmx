@@ -16,16 +16,18 @@
           <Property Name="RoomNumber" Type="int" />
           <Property Name="Price" Type="int" />
           <Property Name="SubdivisionId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
-          <Property Name="PositionId" Type="int" />
-          <Property Name="SubdivisionId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="SubdivisionId" Type="int" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Position">
           <Key>
@@ -46,8 +48,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShortName" Type="nvarchar" MaxLength="50" />
-          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ShortName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -67,16 +70,17 @@
           <Property Name="Date" Type="date" />
           <Property Name="DeviceId" Type="int" />
           <Property Name="ResponsiblePersonId" Type="int" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Login" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="RoleId" Type="int" />
-          <Property Name="EmployeeId" Type="int" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Device_Subdivision">
           <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="0..1" />
@@ -91,7 +95,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Position">
-          <End Role="Position" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -103,7 +107,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Subdivision">
-          <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="0..1" />
+          <End Role="Subdivision" Type="Self.Subdivision" Multiplicity="1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subdivision">
@@ -139,7 +143,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -151,7 +155,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
@@ -253,6 +257,7 @@
           <Property Name="RoomNumber" Type="Int32" />
           <Property Name="Price" Type="Int32" />
           <Property Name="SubdivisionId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Subdivision" Relationship="EquipmentAccountingModel.FK_Device_Subdivision" FromRole="Device" ToRole="Subdivision" />
           <NavigationProperty Name="Transfers" Relationship="EquipmentAccountingModel.FK_Transfer_Device" FromRole="Device" ToRole="Transfer" />
         </EntityType>
@@ -261,10 +266,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PositionId" Type="Int32" />
-          <Property Name="SubdivisionId" Type="Int32" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="SubdivisionId" Type="Int32" Nullable="false" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Position" Relationship="EquipmentAccountingModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
           <NavigationProperty Name="Subdivision" Relationship="EquipmentAccountingModel.FK_Employee_Subdivision" FromRole="Employee" ToRole="Subdivision" />
           <NavigationProperty Name="Transfers" Relationship="EquipmentAccountingModel.FK_Transfer_Employee" FromRole="Employee" ToRole="Transfer" />
@@ -291,8 +297,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ShortName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Devices" Relationship="EquipmentAccountingModel.FK_Device_Subdivision" FromRole="Subdivision" ToRole="Device" />
           <NavigationProperty Name="Employees" Relationship="EquipmentAccountingModel.FK_Employee_Subdivision" FromRole="Subdivision" ToRole="Employee" />
         </EntityType>
@@ -310,10 +317,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="DeviceId" Type="Int32" />
           <Property Name="ResponsiblePersonId" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Device" Relationship="EquipmentAccountingModel.FK_Transfer_Device" FromRole="Transfer" ToRole="Device" />
           <NavigationProperty Name="Employee" Relationship="EquipmentAccountingModel.FK_Transfer_Employee" FromRole="Transfer" ToRole="Employee" />
         </EntityType>
@@ -322,10 +330,10 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RoleId" Type="Int32" />
-          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="EquipmentAccountingModel.FK_User_Employee" FromRole="User" ToRole="Employee" />
           <NavigationProperty Name="Role" Relationship="EquipmentAccountingModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
@@ -354,7 +362,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Position">
-          <End Type="EquipmentAccountingModel.Position" Role="Position" Multiplicity="0..1" />
+          <End Type="EquipmentAccountingModel.Position" Role="Position" Multiplicity="1" />
           <End Type="EquipmentAccountingModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Position">
@@ -366,7 +374,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Employee_Subdivision">
-          <End Type="EquipmentAccountingModel.Subdivision" Role="Subdivision" Multiplicity="0..1" />
+          <End Type="EquipmentAccountingModel.Subdivision" Role="Subdivision" Multiplicity="1" />
           <End Type="EquipmentAccountingModel.Employee" Role="Employee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subdivision">
@@ -390,7 +398,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Employee">
-          <End Type="EquipmentAccountingModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="EquipmentAccountingModel.Employee" Role="Employee" Multiplicity="1" />
           <End Type="EquipmentAccountingModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Employee">
@@ -402,7 +410,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Role">
-          <End Type="EquipmentAccountingModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="EquipmentAccountingModel.Role" Role="Role" Multiplicity="1" />
           <End Type="EquipmentAccountingModel.User" Role="User" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
@@ -413,7 +421,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -422,6 +430,7 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="EquipmentAccountingModel.Device">
               <MappingFragment StoreEntitySet="Device">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="SubdivisionId" ColumnName="SubdivisionId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="RoomNumber" ColumnName="RoomNumber" />
@@ -435,6 +444,7 @@
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="EquipmentAccountingModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="SubdivisionId" ColumnName="SubdivisionId" />
                 <ScalarProperty Name="PositionId" ColumnName="PositionId" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -462,6 +472,7 @@
           <EntitySetMapping Name="Subdivisions">
             <EntityTypeMapping TypeName="EquipmentAccountingModel.Subdivision">
               <MappingFragment StoreEntitySet="Subdivision">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="ShortName" ColumnName="ShortName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -482,6 +493,7 @@
           <EntitySetMapping Name="Transfers">
             <EntityTypeMapping TypeName="EquipmentAccountingModel.Transfer">
               <MappingFragment StoreEntitySet="Transfer">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="ResponsiblePersonId" ColumnName="ResponsiblePersonId" />
                 <ScalarProperty Name="DeviceId" ColumnName="DeviceId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />

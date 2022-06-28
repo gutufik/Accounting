@@ -13,22 +13,35 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ListView x:Name="LvEmployees" ItemsSource="{Binding Employees}">
+        <ListView x:Name="LvEmployees"
+                  SelectionChanged="dgEmp_SelectionChanged"
+                  ItemsSource="{Binding Employees}">
+            <ListView.Resources>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource MaterialDesignBody1TextBlock}">
+                    <Setter Property="FontSize" Value="20"/>
+                    <Setter Property="TextWrapping" Value="Wrap"/>
+                </Style>
+            </ListView.Resources>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding FirstName}"/>
-                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding LastName}"/>
+                        <GridViewColumn Header="Имя" 
+                                        Width="150"
+                                        DisplayMemberBinding="{Binding LastName}"/>
                         <GridViewColumn Header="Подразделение" DisplayMemberBinding="{Binding Subdivision.FullName}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
         <StackPanel Grid.Row="1" >
-            <Button x:Name="Del" Content="Удалить" Click="Del_Click"  FontSize="20" IsEnabled="False"/>
+            <Button x:Name="Del" 
+                    Content="Удалить" 
+                    HorizontalAlignment="Center"
+                    Click="Del_Click"  FontSize="20" IsEnabled="False"/>
         </StackPanel>
     </Grid>
 </Page>

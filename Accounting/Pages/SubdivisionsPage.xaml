@@ -13,7 +13,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
@@ -22,8 +22,31 @@
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridView.Columns>
-                        <GridViewColumn Header="Кратное название" DisplayMemberBinding="{Binding ShortName}"/>
-                        <GridViewColumn Header="Полное название" DisplayMemberBinding="{Binding FullName}"/>
+                        <GridViewColumn Width="100" Header="Id">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Id}" 
+                                               FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Кратное название" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding ShortName}"
+                                               FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Полное название" >
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FullName}"
+                                               TextWrapping="Wrap"
+                                               FontSize="20"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

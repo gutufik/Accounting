@@ -36,6 +36,10 @@ namespace Accounting.Pages
         }
         private void RefreshList(object sender, NavigationEventArgs e)
         {
+            RefreshList();
+        }
+        private void RefreshList()
+        {
             Transfers = DataAccess.GetTransfers();
             LvTransfers.ItemsSource = Transfers;
             LvTransfers.Items.Refresh();
@@ -48,10 +52,11 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            //var user = dgTransfer.SelectedItem as Transf;
-            //DBConnect.connection.Transfer.Remove(DBConnect.connection.Transfer.Find(user.DeviceID, user.Date));
-            //DBConnect.connection.SaveChanges();
-            //NavigationService.Navigate(new PageTransferTable());
+            var transfer = LvTransfers.SelectedItem as Transfer;
+            transfer.IsDeleted = true;
+            DataAccess.SaveTransfer(transfer);
+
+            RefreshList();
         }
 
         private void dgTransfer_SelectionChanged(object sender, SelectionChangedEventArgs e)

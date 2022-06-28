@@ -30,7 +30,6 @@ namespace Accounting.Pages
         public EmployeesPage(User user)
         {
             InitializeComponent();
-            //employees = new ObservableCollection<Employee>(DBConnect.connection.Employee.ToList());
             Employees = DataAccess.GetEmployees();
             user_ = user;
 
@@ -44,6 +43,10 @@ namespace Accounting.Pages
         }
         private void RefreshList(object sender, NavigationEventArgs e)
         {
+            RefreshList();
+        }
+        private void RefreshList()
+        {
             Employees = DataAccess.GetEmployees();
             LvEmployees.ItemsSource = Employees;
             LvEmployees.Items.Refresh();
@@ -56,10 +59,11 @@ namespace Accounting.Pages
 
         private void Del_Click(object sender, RoutedEventArgs e)
         {
-            //var user = dgEmp.SelectedItem as Empl;
-            //DBConnect.connection.Employee.Remove(DBConnect.connection.Employee.Find(user.ID));
-            //DBConnect.connection.SaveChanges();
-            //NavigationService.Navigate(new PageEmployees(user_));
+            var employee = LvEmployees.SelectedItem as Employee;
+            employee.IsDeleted = true;
+            DataAccess.SaveEmployee(employee);
+
+            RefreshList();
         }
     }
 }

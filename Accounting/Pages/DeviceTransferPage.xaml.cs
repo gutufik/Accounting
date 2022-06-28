@@ -37,36 +37,36 @@ namespace Accounting.Pages
 
         private void BtnTransfer_Click(object sender, RoutedEventArgs e)
         {
-            var t = new Transfer();
-            //try
-            //{
-            //    t.DeviceID = (CbDevice.SelectedItem as Device).DeviceID;
-            //    t.Date = DateTime.Now;
-            //    t.FinRespPerson = (from em in DBConnect.connection.Employee.ToList()
-            //                       where em.SubdivID ==
-            //                     (CbSubdiv.SelectedItem as Subdivision).SubdivID
-            //                       select em.ID).FirstOrDefault();
-            //    DBConnect.connection.Transfer.Add(t);
-                
-            //    var device = DBConnect.connection.Device.SingleOrDefault(d => d.DeviceID == t.DeviceID);
-            //    device.SubdivID = (int)DBConnect.connection.Employee.SingleOrDefault(em => em.ID == t.FinRespPerson).SubdivID;
-                
-            //    DBConnect.connection.SaveChanges();
-            //    MessageBox.Show("Новая передача зарегистрирована");
-            //    NavigationService.Navigate(new PageTransferTable());
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Invalid Transfer", "error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+            try 
+            {
+                var device = CbDevice.SelectedItem as Device;
+                var subdivision = CbSubdiv.SelectedItem as Subdivision;
+
+                device.Subdivision = subdivision;
+                Transfer.Device = device;
+                Transfer.Employee = subdivision.Employees.FirstOrDefault();
+                Transfer.Date = DateTime.Now;
+
+                if (!DataAccess.SaveTransfer(Transfer)) 
+                    throw new Exception();
+
+                //if (!DataAccess.SaveDevice(device));
+                //    throw new Exception();
+
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //RespPerson.Text = (from em in DBConnect.connection.Employee.ToList()
-            //           where em.SubdivID ==
-            //         ((sender as ComboBox).SelectedItem as Subdivision).SubdivID
-            //           select em.Name).FirstOrDefault();
+            var subdivision = CbSubdiv.SelectedItem as Subdivision;
+            var employee = subdivision.Employees.FirstOrDefault();
+            if (employee != null)
+                RespPerson.Text = $"{employee.FirstName} {employee.LastName}";
         }
     }
 }

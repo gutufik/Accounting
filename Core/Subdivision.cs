@@ -24,6 +24,7 @@ namespace Core
         public int Id { get; set; }
         public string ShortName { get; set; }
         public string FullName { get; set; }
+        public bool IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Device> Devices { get; set; }

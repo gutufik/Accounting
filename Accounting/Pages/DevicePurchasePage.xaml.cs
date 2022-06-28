@@ -36,8 +36,16 @@ namespace Accounting.Pages
 
         private void BtnBuy_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.SaveDevice(Device);
-            NavigationService.GoBack();
+            try 
+            {
+                if (!DataAccess.SaveDevice(Device))
+                    throw new Exception();
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
         }
     }
 }

@@ -10,20 +10,20 @@ namespace Core
     {
         public static List<Device> GetDevices()
         {
-            return EquipmentAccountingEntities.GetContext().Devices.ToList();
+            return EquipmentAccountingEntities.GetContext().Devices.Where(x => !x.IsDeleted).ToList();
         }
         public static List<Employee> GetEmployees()
         {
-            return EquipmentAccountingEntities.GetContext().Employees.ToList();
+            return EquipmentAccountingEntities.GetContext().Employees.Where(x => !x.IsDeleted).ToList();
         }
         public static List<Subdivision> GetSubdivisions()
-        { 
-            return EquipmentAccountingEntities.GetContext().Subdivisions.ToList(); 
+        {
+            return EquipmentAccountingEntities.GetContext().Subdivisions.Where(x => !x.IsDeleted).ToList();
         }
 
         public static List<Transfer> GetTransfers()
         {
-            return EquipmentAccountingEntities.GetContext().Transfers.ToList();
+            return EquipmentAccountingEntities.GetContext().Transfers.Where(x => !x.IsDeleted).ToList();
         }
 
         public static List<User> GetUsers()
@@ -36,27 +36,75 @@ namespace Core
             return GetUsers().FirstOrDefault(u => u.Login == login && u.Password == password);
         }
 
-        public static void SaveSubdivision(Subdivision subdivision)
+        public static bool SaveSubdivision(Subdivision subdivision)
         {
-            if (GetSubdivisions().FirstOrDefault(s => s.Id == subdivision.Id) == null)
-                EquipmentAccountingEntities.GetContext().Subdivisions.Add(subdivision);
+            try
+            {
+                if (GetSubdivisions().FirstOrDefault(s => s.Id == subdivision.Id) == null)
+                    EquipmentAccountingEntities.GetContext().Subdivisions.Add(subdivision);
 
-            EquipmentAccountingEntities.GetContext().SaveChanges();
+                EquipmentAccountingEntities.GetContext().SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            { return false; }
         }
 
-        public static void SaveDevice(Device device)
+        public static bool SaveDevice(Device device)
         {
-            if (GetDevices().FirstOrDefault(d => d.Id == device.Id) == null)
-                EquipmentAccountingEntities.GetContext().Devices.Add(device);
+            try
+            {
+                if (GetDevices().FirstOrDefault(d => d.Id == device.Id) == null)
+                    EquipmentAccountingEntities.GetContext().Devices.Add(device);
 
-            EquipmentAccountingEntities.GetContext().SaveChanges();
+                EquipmentAccountingEntities.GetContext().SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            { return false; }
+        }
+
+        public static bool SaveTransfer(Transfer transfer)
+        {
+            try
+            {
+                if (GetTransfers().FirstOrDefault(t => t.Id == transfer.Id) == null)
+                    EquipmentAccountingEntities.GetContext().Transfers.Add(transfer);
+
+                EquipmentAccountingEntities.GetContext().SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            { return false; }
+        }
+
+        public static bool SaveEmployee(Employee employee)
+        {
+            try
+            {
+                if (GetEmployees().FirstOrDefault(e => e.Id == employee.Id) == null)
+                    EquipmentAccountingEntities.GetContext().Employees.Add(employee);
+
+                EquipmentAccountingEntities.GetContext().SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public static bool RegisterUser(User user)
-        { 
-            EquipmentAccountingEntities.GetContext().Users.Add(user);
-
-            return Convert.ToBoolean(EquipmentAccountingEntities.GetContext().SaveChanges());
+        {
+            try 
+            {
+                EquipmentAccountingEntities.GetContext().Users.Add(user);
+            
+                return Convert.ToBoolean(EquipmentAccountingEntities.GetContext().SaveChanges());
+            }
+            catch
+            { return false; }
         }
     }
 }

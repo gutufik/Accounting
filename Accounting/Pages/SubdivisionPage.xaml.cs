@@ -33,8 +33,27 @@ namespace Accounting.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            DataAccess.SaveSubdivision(Subdivision);
-            NavigationService.GoBack();
+            try 
+            {
+                DataAccess.SaveSubdivision(Subdivision);
+
+                var employee = CbPersons.SelectedItem as Employee;
+                if (employee != null)
+                {
+                    employee.Subdivision = Subdivision;
+                    if (!DataAccess.SaveEmployee(employee))
+                    {
+                        MessageBox.Show("Заполните данные корректно");
+                        return;
+                    };
+                }
+            
+                NavigationService.GoBack();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Заполните все поля!");
+            }
         }
     }
 }

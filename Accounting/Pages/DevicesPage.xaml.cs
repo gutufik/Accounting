@@ -44,7 +44,11 @@ namespace Accounting.Pages
         }
 
         private void RefreshList(object sender, NavigationEventArgs e)
-        { 
+        {
+            RefreshList();
+        }
+        public void RefreshList()
+        {
             Devices = DataAccess.GetDevices();
             LvDevices.ItemsSource = Devices;
             LvDevices.Items.Refresh();
@@ -62,10 +66,11 @@ namespace Accounting.Pages
 
         private void BtnDel_Click(object sender, RoutedEventArgs e)
         {
-            //var user = dgDevice.SelectedItem as Dev;
-            //DBConnect.connection.Devices.Remove(DBConnect.connection.Devices.Find(user.ID));
-            //DBConnect.connection.SaveChanges();
-            //NavigationService.Navigate(new PageDevices(user_));
+            var device = LvDevices.SelectedItem as Device;
+            device.IsDeleted = true;
+            DataAccess.SaveDevice(device);
+
+            RefreshList();
         }
     }
 }

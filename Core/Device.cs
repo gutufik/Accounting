@@ -27,6 +27,7 @@ namespace Core
         public Nullable<int> RoomNumber { get; set; }
         public Nullable<int> Price { get; set; }
         public Nullable<int> SubdivisionId { get; set; }
+        public bool IsDeleted { get; set; }
     
         public virtual Subdivision Subdivision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

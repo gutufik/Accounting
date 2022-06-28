@@ -57,13 +57,13 @@
         <TextBox x:Name="txtName"
                  Grid.Row="1" Grid.Column="1"
                  VerticalAlignment="Center"
-                 Text="{Binding LastName}"
+                 Text="{Binding Employee.LastName}"
                  FontSize="30" />
         
         <TextBox x:Name="TbFirstName"
                  Grid.Row="2" Grid.Column="1"
                  VerticalAlignment="Center"
-                 Text="{Binding FirstName}"
+                 Text="{Binding Employee.FirstName}"
                  FontSize="30" />
         
         <TextBox x:Name="txtLogin" 

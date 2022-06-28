@@ -27,6 +27,7 @@ namespace Accounting.Pages
             InitializeComponent();
 
             User = new User();
+            User.Employee = new Employee() {PositionId = 2, SubdivisionId = 1 };
             DataContext = User;
         }
 
@@ -37,14 +38,15 @@ namespace Accounting.Pages
 
         private void btnReg_Click(object sender, RoutedEventArgs e)
         {
+            User.Password = txtPassword.Password;
+            User.RoleId = 2;
             if (DataAccess.RegisterUser(User))
             {
                 App.User = User;
-                Windows.HomeWindow homeWindow = new Windows.HomeWindow();
-                homeWindow.Show();
                 Application.Current.MainWindow.Close();
             }
-            MessageBox.Show("Такой пользователь уже зарегистрирован");
+            else
+                MessageBox.Show("Заполните корректно все поля");
         }
     }
 }
